@@ -123,7 +123,8 @@ public class libServlet extends HttpServlet {
 				Class.forName("com.mysql.jdbc.Driver");
 				Connection con = DriverManager.getConnection("jdbc:mysql://localhost:3306/student", "root", "root");
 				Statement stat = con.createStatement();
-				ResultSet rs = stat.executeQuery("select * from student");
+				String query="select * from student";
+				ResultSet rs=stat.executeQuery(query);
 				while (rs.next()) {
 					JSONObject obj = new JSONObject();
 					obj.put("Rollno", rs.getInt(1));
