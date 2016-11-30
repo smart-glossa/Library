@@ -177,10 +177,74 @@ public class libServlet extends HttpServlet {
 				e.printStackTrace();
 			}
 			response.getWriter().print(obj3);
-		}else if(operation.equals("empAdd")){
-		     String name=request.getParameter("Name");
-		     
-		      
+		}else if(operation.equals("bookdelete")){
+			   int bookid=Integer.parseInt(request.getParameter("bookid"));
+			   String bookname=request.getParameter("bookname");
+			   JSONObject obj4=new JSONObject();
+			   
+			   try {
+				Class.forName("com.mysql.jdbc.Driver");
+				Connection con = DriverManager.getConnection("jdbc:mysql://localhost:3306/student", "root", "root");
+				Statement stat = con.createStatement();
+				String query="delete from book where bookid="+bookid;
+				stat.execute(query);
+				obj4.put("status", "success");
+		
+			} catch (Exception e) {
+				obj4.put("status", "error");
+				// TODO Auto-generated catch block
+				e.printStackTrace();
+			}
+			response.getWriter().print(obj4);	
+		   }
+		   else if(operation.equals("bookone")){
+			   int bookid=Integer.parseInt(request.getParameter("bookid"));
+			   JSONObject obj5=new JSONObject();
+			   
+			   try {
+				Class.forName("com.mysql.jdbc.Driver");
+				Connection con = DriverManager.getConnection("jdbc:mysql://localhost:3306/student", "root", "root");
+				Statement stat = con.createStatement();
+				String query="Select * from book where bookid="+bookid;
+				stat.execute(query);
+				obj5.put("status", "success");
+				
+			} catch (Exception e) {
+				obj5.put("status", "error");
+				// TODO Auto-generated catch block
+				e.printStackTrace();
+			}
+				
+			   response.getWriter().print(obj5);
+		   }
+		   else if(operation.equals("bookget")){
+			   
+			   JSONArray re1=new JSONArray();
+			  
+				try {
+					Class.forName("com.mysql.jdbc.Driver");
+					Connection con = DriverManager.getConnection("jdbc:mysql://localhost:3306/student", "root", "root");
+					Statement stat = con.createStatement();
+					String query="select * from book";
+					ResultSet rs=stat.executeQuery(query);
+					while(rs.next()){
+						JSONObject ob=new JSONObject();
+						ob.put("bookid", rs.getInt(1));
+						ob.put("bookname", rs.getString(2));
+						re1.put(ob);
+					}
+					
+					
+					
+				} catch (Exception e) {
+					// TODO Auto-generated catch block
+					e.printStackTrace();
+				}
+				
+			response.getWriter().print(re1);
+			   
+			   
+			   
+		   }
 		}
 	}
-}
