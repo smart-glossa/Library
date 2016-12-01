@@ -30,13 +30,13 @@ public class libServlet extends HttpServlet {
 		String operation = request.getParameter("operation");
 		JSONObject result = new JSONObject();
 		if (operation.equals("add")) {
-
+             
 			String Name = request.getParameter("Name");
 			String std = request.getParameter("class");
 			String List = request.getParameter("cards");
 			String date = request.getParameter("date");
 
-			try {
+			try {  //mysql connection  
 				Class.forName("com.mysql.jdbc.Driver");
 				Connection con = DriverManager.getConnection("jdbc:mysql://localhost:3306/student", "root", "root");
 				Statement stat = con.createStatement();
@@ -174,7 +174,6 @@ public class libServlet extends HttpServlet {
 
 			} catch (Exception e) {
 				obj3.put("status", "error");
-				// TODO Auto-generated catch block
 				e.printStackTrace();
 			}
 			response.getWriter().print(obj3);
