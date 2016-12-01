@@ -9,13 +9,12 @@
     <welcome-file>default.htm</welcome-file>
     <welcome-file>default.jsp</welcome-file>
   </welcome-file-list>
-    <servlet>
-        <servlet-name>Library</servlet-name>
-        <servlet-class>library.libServlet</servlet-class>
-    </servlet>
-
-    <servlet-mapping>
-        <servlet-name>Library</servlet-name>
-        <url-pattern>/lib  </url-pattern>
-    </servlet-mapping>
+  <servlet>
+    <servlet-name>Library</servlet-name>
+    <servlet-class>library.libServlet</servlet-class>
+  </servlet>
+  <servlet-mapping>
+    <servlet-name>Library</servlet-name>
+    <url-pattern>/lib  </url-pattern>
+  </servlet-mapping>
 </web-app>
