@@ -103,8 +103,14 @@ public class libServlet extends HttpServlet {
 		 				Connection con = DriverManager.getConnection("jdbc:mysql://localhost:3306/student", "root", "root");
 		 				Statement stat = con.createStatement();
 		 				String query = "Select * from student where Rollno=" + Rollno + "";
-		 				stat.execute(query);
-		 				res1.put("status", 1);
+		 				ResultSet rset=stat.executeQuery(query);
+		 				if(rset.next()){
+		 					res1.put("rollno",rset.getInt(1));
+		 					res1.put("name", rset.getString(2));
+		 					res1.put("class", rset.getString(3));
+		 					res1.put("cards", rset.getString(4));
+		 					res1.put("date", rset.getString(5));
+		 				}
 		 			} catch (Exception e) {
 		 				res1.put("status", 0);
 		 				// TODO Auto-generated catch block
