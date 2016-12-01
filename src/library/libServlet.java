@@ -26,9 +26,9 @@ public class libServlet extends HttpServlet {
 
 	protected void doPost(HttpServletRequest request, HttpServletResponse response) throws ServletException, IOException {
 		String operation = request.getParameter("operation");
-		 		JSONObject result = new JSONObject();
+		 		
 		 		if (operation.equals("add")) {
-		              
+		 			JSONObject result = new JSONObject();  
 		 			String Name = request.getParameter("Name");
 		 			String std = request.getParameter("class");
 					String List = request.getParameter("cards");
