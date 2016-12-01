@@ -119,7 +119,7 @@ public class libServlet extends HttpServlet {
 		 			response.getWriter().print(res1);
 		 
 		 		} else if (operation.equals("getAll")) {
-		 			int Rollno = Integer.parseInt(request.getParameter("Rollno"));
+		 			//int Rollno = Integer.parseInt(request.getParameter("Rollno"));
 		 			JSONArray res2 = new JSONArray();
 		 
 		 			try {
