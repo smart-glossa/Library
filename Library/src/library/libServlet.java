@@ -177,6 +177,10 @@ public class libServlet extends HttpServlet {
 				e.printStackTrace();
 			}
 			response.getWriter().print(obj3);
+		}else if(operation.equals("empAdd")){
+		     String name=request.getParameter("Name");
+		     
+		      
 		}
 	}
 }
