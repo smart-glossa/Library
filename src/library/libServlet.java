@@ -35,15 +35,15 @@ public class libServlet extends HttpServlet {
 			String gender = request.getParameter("Gender");
 			String dpt = request.getParameter("dep");
 			String year = request.getParameter("Year");
-			String email = request.getParameter("Email");
 			String contact = request.getParameter("Contact");
+			String email = request.getParameter("Email");
 			String date = request.getParameter("rdate");
 
 			try { // mysql connection
 				Class.forName("com.mysql.jdbc.Driver");
 				Connection con = DriverManager.getConnection("jdbc:mysql://localhost:3306/student", "root", "root");
 				Statement stat = con.createStatement();
-				String query = "insert into student(sid,Name,gender,dep,year,contact,email,rdate)values("+id+",'" + Name + "','" + gender+ "','" + dpt + "','" + year + "','"+email+"','"+contact+"','"+date+"')";
+				String query = "insert into student(sid,Name,gender,dep,year,contact,email,rdate)values("+id+",'" + Name + "','" + gender+ "','" + dpt + "','" + year + "','"+contact+"','"+email+"','"+date+"')";
 				stat.execute(query);
 				result.put("status", 1);
 			} catch (Exception e) {
@@ -54,20 +54,23 @@ public class libServlet extends HttpServlet {
 			response.getWriter().print(result);
 		}
 
-		else if (operation.equals("update")) {
-			int Rollno = Integer.parseInt(request.getParameter("Rollno"));
+		else if (operation.equals("stdupdate")) {
+			String id = request.getParameter("sId");
 			String Name = request.getParameter("Name");
-			String std = request.getParameter("class");
-			String List = request.getParameter("cards");
-			String date = request.getParameter("date");
+			String gender = request.getParameter("Gender");
+			String dpt = request.getParameter("dep");
+			String year = request.getParameter("Year");
+			String contact = request.getParameter("Contact");
+			String email = request.getParameter("Email");
+			String date = request.getParameter("rdate");
 			JSONObject re = new JSONObject();
 
 			try {
 				Class.forName("com.mysql.jdbc.Driver");
 				Connection con = DriverManager.getConnection("jdbc:mysql://localhost:3306/student", "root", "root");
 				Statement stat = con.createStatement();
-				String query = "update student set Name='" + Name + "',class='" + std + "',Listofcards='" + List
-						+ "',Expirydate='" + date + "'where Rollno=" + Rollno;
+				String query = "update student set Name='" + Name + "',gender='" + gender + "',dep='" + dpt
+						+ "',year='" + year + "',contact='"+contact+"',email='"+email+"',rdate='"+date+"' where sid=" + id;
 				stat.execute(query);
 				re.put("status", 1);
 			} catch (Exception e) {
