@@ -42,6 +42,7 @@ $(document)
 									alert("Please Check Details!..")
 								});
 							})
+							// update employee details js...
 					$(document)
 							.on(
 									"click",
@@ -90,7 +91,7 @@ $(document)
 											return;
 
 										}
-										
+
 										var url = "/Library/lib?operation=empupdate&Id="
 												+ id
 												+ "&Name="
@@ -125,4 +126,5 @@ $(document)
 										});
 
 									})
+									
 				})
