@@ -223,7 +223,6 @@ public class libServlet extends HttpServlet {
 
 			} catch (Exception e) {
 				obj4.put("status", 0);
-				// TODO Auto-generated catch block
 				e.printStackTrace();
 			}
 			response.getWriter().print(obj4);
@@ -246,7 +245,6 @@ public class libServlet extends HttpServlet {
 				obj5.put("status", 1);
 			} catch (Exception e) {
 				obj5.put("status", 0);
-				// TODO Auto-generated catch block
 				e.printStackTrace();
 			}
 
