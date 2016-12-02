@@ -327,11 +327,12 @@ public class libServlet extends HttpServlet {
 				if(rs.next()){
 					
 					get.put("Name",rs.getString(2));
-					get.put("Gender",rs.getString(3));
-					get.put("MoblieNo",rs.getString(4));
+					get.put("Gender",rs.getString(4));
+					get.put("MoblieNo",rs.getString(5));
 					//get.put("Password",rs.getString(5));
 					
 				}
+				get.put("status", 1);
 			} catch (Exception e) {
 				get.put("status",0);
 			}
