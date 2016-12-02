@@ -22,19 +22,20 @@ TABLE:2;
 
 <H6>STUDENT DETAILS</H6>
 
-    CREATE TABLE `student` (
+   CREATE TABLE `student` (
   `sid` int(11) NOT NULL,
   `Name` varchar(50) default NULL,
-  `gender` varchar(50),
+  `gender` varchar(50) default NULL,
   `dep` varchar(50) default NULL,
   `year` varchar(50) default NULL,
   `contact` varchar(50) default NULL,
-  `email` varchar(100),
-  `rdate` varchar(100),
-  PRIMARY KEY  USING BTREE (`sid`)
+  `email` varchar(100) default NULL,
+  `rdate` varchar(100) default NULL,
+  PRIMARY KEY  (`sid`)
 ) ENGINE=InnoDB DEFAULT CHARSET=latin1
 
 TABLE:3
+
 <H6>BOOK DETAILS</H6>
 
 CREATE TABLE `book` (
