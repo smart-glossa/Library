@@ -1,6 +1,6 @@
 # Library
 
-DETAILS OF DATABASE :
+<h3>DETAILS OF DATABASE :<h3>
 
 create database student;
 
