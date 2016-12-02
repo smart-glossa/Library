@@ -123,7 +123,7 @@ public class libServlet extends HttpServlet {
 					res1.put("contact", rset.getString(6));
 					res1.put("email", rset.getString(7));
 					res1.put("rdate", rset.getString(8));
-					
+
 				}
 			} catch (Exception e) {
 				res1.put("status", 0);
@@ -157,8 +157,8 @@ public class libServlet extends HttpServlet {
 				}
 
 			} catch (Exception e) {
-               JSONObject error=new JSONObject();
-               res2.put(error);
+				JSONObject error = new JSONObject();
+				res2.put(error);
 				// TODO Auto-generated catch block
 				e.printStackTrace();
 			}
@@ -169,13 +169,16 @@ public class libServlet extends HttpServlet {
 		} else if (operation.equals("bookadd")) {
 			int bookid = Integer.parseInt(request.getParameter("bookid"));
 			String bookname = request.getParameter("bookname");
+			String aname = request.getParameter("aname");
+			String cat = request.getParameter("cat");
 			JSONObject obj1 = new JSONObject();
 
 			try {
 				Class.forName("com.mysql.jdbc.Driver");
 				Connection con = DriverManager.getConnection("jdbc:mysql://localhost:3306/student", "root", "root");
 				Statement stat = con.createStatement();
-				String query = " insert into book(bookid,bookname)values(" + bookid + ",'" + bookname + "')";
+				String query = " insert into book(bookid,bookname,authorname,cat)values("+bookid+",'" + bookname + "','"
+						+aname+ "','"+cat+"')";
 				stat.execute(query);
 				obj1.put("status", 1);
 
@@ -184,16 +187,19 @@ public class libServlet extends HttpServlet {
 				e.printStackTrace();
 			}
 			response.getWriter().print(obj1);
+			
 		} else if (operation.equals("bookupdate")) {
 			int bookid = Integer.parseInt(request.getParameter("bookid"));
 			String bookname = request.getParameter("bookname");
+			String aname=request.getParameter("aname");
+			String cat=request.getParameter("cat");
 			JSONObject obj3 = new JSONObject();
 
 			try {
 				Class.forName("com.mysql.jdbc.Driver");
 				Connection con = DriverManager.getConnection("jdbc:mysql://localhost:3306/student", "root", "root");
 				Statement stat = con.createStatement();
-				String query = " update book set bookname=" + bookname + " where bookid=" + bookid;
+				String query = " update book set bookname='" + bookname + "',authorname='"+aname+"',cat='"+cat+"' where bookid=" + bookid;
 				stat.execute(query);
 				obj3.put("status", 1);
 
@@ -234,6 +240,8 @@ public class libServlet extends HttpServlet {
 				if (rs.next()) {
 					obj5.put("bookid", rs.getInt(1));
 					obj5.put("booname", rs.getString(2));
+					obj5.put("aname", rs.getString(3));
+					obj5.put("cat",rs.getString(4));
 				}
 				obj5.put("status", 1);
 			} catch (Exception e) {
@@ -257,6 +265,8 @@ public class libServlet extends HttpServlet {
 					JSONObject ob = new JSONObject();
 					ob.put("bookid", rs.getInt(1));
 					ob.put("bookname", rs.getString(2));
+					ob.put("aname", rs.getString(3));
+					ob.put("cat",rs.getString(4));
 					re1.put(ob);
 				}
 
