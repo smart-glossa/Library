@@ -43,7 +43,9 @@ public class libServlet extends HttpServlet {
 				Class.forName("com.mysql.jdbc.Driver");
 				Connection con = DriverManager.getConnection("jdbc:mysql://localhost:3306/student", "root", "root");
 				Statement stat = con.createStatement();
-				String query = "insert into student(sid,Name,gender,dep,year,contact,email,rdate)values("+id+",'" + Name + "','" + gender+ "','" + dpt + "','" + year + "','"+contact+"','"+email+"','"+date+"')";
+				String query = "insert into student(sid,Name,gender,dep,year,contact,email,rdate)values(" + id + ",'"
+						+ Name + "','" + gender + "','" + dpt + "','" + year + "','" + contact + "'," + "'" + email
+						+ "','" + date + "')";
 				stat.execute(query);
 				result.put("status", 1);
 			} catch (Exception e) {
@@ -69,8 +71,9 @@ public class libServlet extends HttpServlet {
 				Class.forName("com.mysql.jdbc.Driver");
 				Connection con = DriverManager.getConnection("jdbc:mysql://localhost:3306/student", "root", "root");
 				Statement stat = con.createStatement();
-				String query = "update student set Name='" + Name + "',gender='" + gender + "',dep='" + dpt
-						+ "',year='" + year + "',contact='"+contact+"',email='"+email+"',rdate='"+date+"' where sid=" + id;
+				String query = "update student set Name='" + Name + "',gender='" + gender + "',dep='" + dpt + "',year='"
+						+ year + "',contact='" + contact + "',email='" + email + "',rdate='" + date + "' where sid="
+						+ id;
 				stat.execute(query);
 				re.put("status", 1);
 			} catch (Exception e) {
@@ -82,14 +85,14 @@ public class libServlet extends HttpServlet {
 			response.getWriter().print(re);
 
 		} else if (operation.equals("delete")) {
-			int Rollno = Integer.parseInt(request.getParameter("Rollno"));
+			int id = Integer.parseInt(request.getParameter("sId"));
 			JSONObject res = new JSONObject();
 
 			try {
 				Class.forName("com.mysql.jdbc.Driver");
 				Connection con = DriverManager.getConnection("jdbc:mysql://localhost:3306/student", "root", "root");
 				Statement stat = con.createStatement();
-				String query = "delete from student where Rollno=" + Rollno;
+				String query = "delete from student where sid=" + id;
 				stat.execute(query);
 				res.put("status", 1);
 
@@ -152,10 +155,9 @@ public class libServlet extends HttpServlet {
 				e.printStackTrace();
 			}
 			response.getWriter().print(res2);
-			
-			
-                       /************add book details*************/
-			
+
+			/************ add book details *************/
+
 		} else if (operation.equals("bookadd")) {
 			int bookid = Integer.parseInt(request.getParameter("bookid"));
 			String bookname = request.getParameter("bookname");
