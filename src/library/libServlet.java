@@ -37,7 +37,7 @@ public class libServlet extends HttpServlet {
 			String gender = request.getParameter("Gender");
 			String email = request.getParameter("Email");
 			String contact = request.getParameter("Contact");
-			String year= request.getParameter("Year");
+			String year = request.getParameter("Year");
 			String List = request.getParameter("cards");
 			String date = request.getParameter("date");
 
@@ -253,23 +253,22 @@ public class libServlet extends HttpServlet {
 			}
 
 			response.getWriter().print(re1);
-
+			// employee details add
 		} else if (operation.equals("empAdd")) {
 			JSONObject obj = new JSONObject();
-			int id=Integer.parseInt(request.getParameter("Id"));
+			int id = Integer.parseInt(request.getParameter("Id"));
 			String name = request.getParameter("Name");
 			String password = request.getParameter("password");
 			String gender = request.getParameter("Gender");
 			String mobileno = request.getParameter("Mobileno");
 			String address = request.getParameter("Address");
-			
-			
+
 			try {
 				Class.forName("com.mysql.jdbc.Driver");
 				Connection con = DriverManager.getConnection("jdbc:mysql://localhost:3306/student", "root", "root");
 				Statement stat = con.createStatement();
-				String query = "insert into employee(Id,Name,password,Gender,Mobileno,Address)values("+id+",'" + name + "','"+password+"','" + gender
-						+ "','" + mobileno + "','" + address + "')";
+				String query = "insert into employee(Id,Name,password,Gender,Mobileno,Address)values(" + id + ",'"
+						+ name + "','" + password + "','" + gender + "','" + mobileno + "','" + address + "')";
 				stat.execute(query);
 				obj.put("status", 1);
 
@@ -278,6 +277,7 @@ public class libServlet extends HttpServlet {
 				e.printStackTrace();
 			}
 			response.getWriter().print(obj);
+			// employee delete
 		} else if (operation.equals("empdelete")) {
 			int id = Integer.parseInt(request.getParameter("Id"));
 			JSONObject del = new JSONObject();
@@ -293,6 +293,7 @@ public class libServlet extends HttpServlet {
 				del.put("status", 0);
 			}
 			response.getWriter().print(del);
+			// empupdate employee details
 		} else if (operation.equals("empupdate")) {
 			JSONObject updates = new JSONObject();
 			int id = Integer.parseInt(request.getParameter("Id"));
@@ -300,8 +301,8 @@ public class libServlet extends HttpServlet {
 			String egender = request.getParameter("Gender");
 			String emobno = request.getParameter("Mobileno");
 			String eaddress = request.getParameter("Address");
-		//	String epassword = request.getParameter("password");
-			
+			// String epassword = request.getParameter("password");
+
 			try {
 				Class.forName("com.mysql.jdbc.Driver");
 				Connection connection = DriverManager.getConnection("jdbc:mysql://localhost:3306/student", "root",
@@ -315,51 +316,53 @@ public class libServlet extends HttpServlet {
 				updates.put("status", 0);
 			}
 			response.getWriter().print(updates);
-		}else if(operation.equals("getonly")){
-			int id=Integer.parseInt(request.getParameter("Id"));
-			JSONObject get=new JSONObject();
+		} else if (operation.equals("getonly")) {
+			int id = Integer.parseInt(request.getParameter("Id"));
+			JSONObject get = new JSONObject();
 			try {
 				Class.forName("com.mysql.jdbc.Driver");
-				Connection connection=DriverManager.getConnection("jdbc:mysql://localhost:3306/student", "root", "root");
-				Statement statement=connection.createStatement();
-				String query="select id Name,Gender,Mobileno from employee where Id="+id;
-				ResultSet rs=statement.executeQuery(query);
-				if(rs.next()){
-					
-					get.put("Name",rs.getString(2));
-					get.put("Gender",rs.getString(4));
-					get.put("MoblieNo",rs.getString(5));
-					//get.put("Password",rs.getString(5));
-					
+				Connection connection = DriverManager.getConnection("jdbc:mysql://localhost:3306/student", "root",
+						"root");
+				Statement statement = connection.createStatement();
+				String query = "select * from employee where Id=" + id;
+				ResultSet rs = statement.executeQuery(query);
+				if (rs.next()) {
+
+					get.put("Name", rs.getString(2));
+					get.put("Gender", rs.getString(4));
+					get.put("MoblieNo", rs.getString(5));
+					// get.put("Password",rs.getString(5));
+
 				}
 				get.put("status", 1);
 			} catch (Exception e) {
-				get.put("status",0);
+				get.put("status", 0);
 			}
-			 response.getWriter().print(get);
-			}else if(operation.equals("getAll")){
-				JSONArray all=new JSONArray();
-				try {
-					Class.forName("com.mysql.jdbc.Driver");
-					Connection connection=DriverManager.getConnection("jdbc:mysql://localhost:3306/student", "root", "root");
-					Statement statement=connection.createStatement();
-					String query="select * from employee";
-					ResultSet rs=statement.executeQuery(query);
-					while(rs.next()){
-						JSONObject gets=new JSONObject();
-						gets.put("Id",rs.getInt(1));
-						gets.put("Name",rs.getString(2));
-						gets.put("Gender",rs.getString(4));
-						gets.put("MoblieNo",rs.getString(5));
-						gets.put("Address",rs.getString(6));
-						//gets.put("Password",rs.getString(6));
-						all.put(gets);
-					}
-				} catch (Exception e){
-					JSONObject error=new JSONObject();
-					error.put("status", 0);
+			response.getWriter().print(get);
+		} else if (operation.equals("getAlls")) {
+			JSONArray all = new JSONArray();
+			try {
+				Class.forName("com.mysql.jdbc.Driver");
+				Connection connection = DriverManager.getConnection("jdbc:mysql://localhost:3306/student", "root",
+						"root");
+				Statement statement = connection.createStatement();
+				String query = "select * from employee";
+				ResultSet rs = statement.executeQuery(query);
+				while (rs.next()) {
+					JSONObject gets = new JSONObject();
+					gets.put("Id", rs.getInt(1));
+					gets.put("Name", rs.getString(2));
+					gets.put("Gender", rs.getString(4));
+					gets.put("MoblieNo", rs.getString(5));
+					gets.put("Address", rs.getString(6));
+					// gets.put("Password",rs.getString(6));
+					all.put(gets);
 				}
-				response.getWriter().print(all);
+			} catch (Exception e) {
+				JSONObject error = new JSONObject();
+				error.put("status", 0);
 			}
+			response.getWriter().print(all);
 		}
 	}
+}
