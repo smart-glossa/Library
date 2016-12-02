@@ -41,5 +41,7 @@ TABLE:3
 CREATE TABLE `book` (
   `bookid` int(11) NOT NULL,
   `bookname` varchar(100) default NULL,
+  `authorname` varchar(45) default NULL,
+  `cat` varchar(45) default NULL,
   PRIMARY KEY  (`bookid`)
 ) ENGINE=InnoDB DEFAULT CHARSET=latin1
