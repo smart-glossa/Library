@@ -28,25 +28,22 @@ public class libServlet extends HttpServlet {
 	protected void doPost(HttpServletRequest request, HttpServletResponse response)
 			throws ServletException, IOException {
 		String operation = request.getParameter("operation");
-
 		if (operation.equals("add")) {
 			JSONObject result = new JSONObject();
-			String id = request.getParameter("Id");
+			String id = request.getParameter("sId");
 			String Name = request.getParameter("Name");
-			String std = request.getParameter("class");
 			String gender = request.getParameter("Gender");
+			String dpt = request.getParameter("dep");
+			String year = request.getParameter("Year");
 			String email = request.getParameter("Email");
 			String contact = request.getParameter("Contact");
-			String year = request.getParameter("Year");
-			String List = request.getParameter("cards");
-			String date = request.getParameter("date");
+			String date = request.getParameter("rdate");
 
 			try { // mysql connection
 				Class.forName("com.mysql.jdbc.Driver");
 				Connection con = DriverManager.getConnection("jdbc:mysql://localhost:3306/student", "root", "root");
 				Statement stat = con.createStatement();
-				String query = "insert into student(Name,class,Listofcards,Expirydate)values('" + Name + "','" + std
-						+ "','" + List + "','" + date + "')";
+				String query = "insert into student(sid,Name,gender,dep,year,contact,email,rdate)values("+id+",'" + Name + "','" + gender+ "','" + dpt + "','" + year + "','"+email+"','"+contact+"','"+date+"')";
 				stat.execute(query);
 				result.put("status", 1);
 			} catch (Exception e) {
@@ -152,7 +149,10 @@ public class libServlet extends HttpServlet {
 				e.printStackTrace();
 			}
 			response.getWriter().print(res2);
-
+			
+			
+                       /************add book details*************/
+			
 		} else if (operation.equals("bookadd")) {
 			int bookid = Integer.parseInt(request.getParameter("bookid"));
 			String bookname = request.getParameter("bookname");
