@@ -3,72 +3,37 @@
 <head>
 <meta charset="ISO-8859-1">
 <title>Insert title here</title>
+<link rel="stylesheet" type="text/css" href="css/style.css">
 </head>
 <body>
-	<style>
-h3 {
-	color: red;
-	font-size: 30px;
-}
-
-input {
-	width: 190px;
-	height: 40px;
-}
-
-.tab {
-	font-size: 25px;
-}
-
-#submit {
-	width: 90px;
-	height: 40px;
-	font-size: 20px;
-	font-family: Times new roman;
-}
-
-#update {
-	width: 90px;
-	height: 40px;
-	font-size: 20px;
-	font-family: Times new roman;
-}
-table{
-border-spacing:10px; 
-}
-</style>
 </head>
-<body>
-	<center>
+<body><center>
+<div class="emp">
+	
 		<div>
 			<h3>Employee details</h3>
 			<table>
 				<tr>
-					<td class="tab">Id:</td>
+					<td class="tab">Id<span>*</span>:</td>
 					<td><input type="text" id="eid"></input></td>
+					<td class="tab">Name<span>*</span>:</td>
+					<td><input type="text" id="ename"></input>
 				</tr>
+				
 				<tr>
-					<td class="tab">Name:</td>
-					<td><input type="text" id="ename"></input></td>
-				</tr>
-				<tr>
-					<td class="tab">Gender:</td>
+					<td class="tab">Gender<span>*</span>:</td>
 					<td><input type="text" id="egender"></input></td>
-				</tr>
-				<tr>
-					<td class="tab">MobileNo:</td>
+					<td class="tab">MobileNo<span>*</span>:</td>
 					<td><input type="text" id="emobile"></input></td>
 				</tr>
 				<tr>
-					<td class="tab">Address:</td>
-					<td><input type="text" id="eadd"></input></td>
-				</tr>
-				<tr>
-					<td></td>
-					<td><button id="submit">Submit</button>
-						<button id="update">Update</button></td>
+					<td class="tab">Address<span>*</span>:</td>
+					<td><textarea id="adds"></textarea></td>
 				</tr>
 			</table>
-
-		</div>
-	</center>
+                   <button id="submit">Submit</button>
+						<button id="update">Update</button>
+		</div></div>
+	</center></div>
+	</body>
+	</html>
