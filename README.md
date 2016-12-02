@@ -11,14 +11,15 @@ TABLES:
 CREATE TABLE `employee` (
   `Id` int(11) NOT NULL,
   `Name` varchar(30) default NULL,
+  `password` varchar(50) default NULL,
   `Gender` varchar(30) default NULL,
   `Mobileno` varchar(30) default NULL,
   `Address` varchar(30) default NULL,
-   `password` varchar(50)default NULL,
   PRIMARY KEY  (`Id`)
-) ENGINE=InnoDB AUTO_INCREMENT=9 DEFAULT CHARSET=latin1
+) ENGINE=InnoDB DEFAULT CHARSET=latin1
 
 TABLE:2;
+
 <H6>STUDENT DETAILS</H6>
 
     CREATE TABLE `student` (
