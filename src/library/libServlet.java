@@ -31,8 +31,13 @@ public class libServlet extends HttpServlet {
 
 		if (operation.equals("add")) {
 			JSONObject result = new JSONObject();
+			String id = request.getParameter("Id");
 			String Name = request.getParameter("Name");
 			String std = request.getParameter("class");
+			String gender = request.getParameter("Gender");
+			String email = request.getParameter("Email");
+			String contact = request.getParameter("Contact");
+			String year= request.getParameter("Year");
 			String List = request.getParameter("cards");
 			String date = request.getParameter("date");
 
@@ -251,16 +256,19 @@ public class libServlet extends HttpServlet {
 
 		} else if (operation.equals("empAdd")) {
 			JSONObject obj = new JSONObject();
+			int id=Integer.parseInt(request.getParameter("Id"));
 			String name = request.getParameter("Name");
 			String gender = request.getParameter("Gender");
 			String mobileno = request.getParameter("Mobileno");
 			String address = request.getParameter("Address");
+			String password = request.getParameter("password");
+			
 			try {
 				Class.forName("com.mysql.jdbc.Driver");
 				Connection con = DriverManager.getConnection("jdbc:mysql://localhost:3306/student", "root", "root");
 				Statement stat = con.createStatement();
-				String query = "insert into employee(Name,Gender,Mobileno,Address)values('" + name + "','" + gender
-						+ "','" + mobileno + "','" + address + "')";
+				String query = "insert into employee(Id,Name,Gender,Mobileno,Address,Password)values("+id+",'" + name + "','" + gender
+						+ "','" + mobileno + "','" + address + "','"+password+"')";
 				stat.execute(query);
 				obj.put("status", 1);
 
@@ -291,13 +299,15 @@ public class libServlet extends HttpServlet {
 			String egender = request.getParameter("Gender");
 			String emobno = request.getParameter("Mobileno");
 			String eaddress = request.getParameter("Address");
+			String epassword = request.getParameter("password");
+			
 			try {
 				Class.forName("com.mysql.jdbc.Driver");
 				Connection connection = DriverManager.getConnection("jdbc:mysql://localhost:3306/student", "root",
 						"root");
 				Statement statement = connection.createStatement();
 				String query = "update employee set Name='" + ename + "',Gender='" + egender + "',Mobileno='" + emobno
-						+ "',Address='" + eaddress + "' where Id=" + id;
+						+ "',Address='" + eaddress + "',password='"+epassword+"' where Id=" + id;
 				statement.execute(query);
 				updates.put("status", 1);
 			} catch (Exception e) {
@@ -311,12 +321,14 @@ public class libServlet extends HttpServlet {
 				Class.forName("com.mysql.jdbc.Driver");
 				Connection connection=DriverManager.getConnection("jdbc:mysql://localhost:3306/student", "root", "root");
 				Statement statement=connection.createStatement();
-				String query="select Name,Gender,Mobileno from employee where Id="+id;
+				String query="select Name,Gender,Mobileno,Password from employee where Id="+id;
 				ResultSet rs=statement.executeQuery(query);
 				if(rs.next()){
 					get.put("Name",rs.getString(2));
 					get.put("Gender",rs.getString(3));
 					get.put("MoblieNo",rs.getString(4));
+					get.put("Password",rs.getString(5));
+					
 				}
 			} catch (Exception e) {
 				get.put("status",0);
@@ -336,6 +348,7 @@ public class libServlet extends HttpServlet {
 						gets.put("Gender",rs.getString(3));
 						gets.put("MoblieNo",rs.getString(4));
 						gets.put("Address",rs.getString(5));
+						gets.put("Password",rs.getString(6));
 						all.put(gets);
 					}
 				} catch (Exception e){
