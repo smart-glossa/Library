@@ -105,21 +105,25 @@ public class libServlet extends HttpServlet {
 
 		} else if (operation.equals("getone")) {
 
-			int Rollno = Integer.parseInt(request.getParameter("Rollno"));
+			int id = Integer.parseInt(request.getParameter("sId"));
 			JSONObject res1 = new JSONObject();
 
 			try {
 				Class.forName("com.mysql.jdbc.Driver");
 				Connection con = DriverManager.getConnection("jdbc:mysql://localhost:3306/student", "root", "root");
 				Statement stat = con.createStatement();
-				String query = "Select * from student where Rollno=" + Rollno + "";
+				String query = "Select * from student where sid=" + id + "";
 				ResultSet rset = stat.executeQuery(query);
 				if (rset.next()) {
-					res1.put("rollno", rset.getInt(1));
+					res1.put("stdId", rset.getInt(1));
 					res1.put("name", rset.getString(2));
-					res1.put("class", rset.getString(3));
-					res1.put("cards", rset.getString(4));
-					res1.put("date", rset.getString(5));
+					res1.put("gender", rset.getString(3));
+					res1.put("dep", rset.getString(4));
+					res1.put("year", rset.getString(5));
+					res1.put("contact", rset.getString(6));
+					res1.put("email", rset.getString(7));
+					res1.put("rdate", rset.getString(8));
+					
 				}
 			} catch (Exception e) {
 				res1.put("status", 0);
@@ -141,16 +145,20 @@ public class libServlet extends HttpServlet {
 				ResultSet rs = stat.executeQuery(query);
 				while (rs.next()) {
 					JSONObject obj = new JSONObject();
-					obj.put("Rollno", rs.getInt(1));
-					obj.put("Name", rs.getString(2));
-					obj.put("class", rs.getString(3));
-					obj.put("cards", rs.getString(4));
-					obj.put("date", rs.getString(5));
+					obj.put("stdId", rs.getInt(1));
+					obj.put("name", rs.getString(2));
+					obj.put("gender", rs.getString(3));
+					obj.put("dep", rs.getString(4));
+					obj.put("year", rs.getString(5));
+					obj.put("contact", rs.getString(6));
+					obj.put("email", rs.getString(7));
+					obj.put("rdate", rs.getString(8));
 					res2.put(obj);
 				}
 
 			} catch (Exception e) {
-
+               JSONObject error=new JSONObject();
+               res2.put(error);
 				// TODO Auto-generated catch block
 				e.printStackTrace();
 			}
