@@ -87,4 +87,52 @@ $(document).ready(function(){
 	console.log(result);
 })
 })
+
+$("#bookid").click(function(){
+	var name =$("#bookname").val();
+	var bauthor=$("#aname").val();
+	var bcat=$("#cat").val();
+	var url="http://localhost:8080/Library/lib?operation=bookone&bookname="+name+"&aname="+bauthor+"&cat="+bcat;
+	$.ajax({
+		url:url,
+		type:'post'})
+		
+	.done(function(result){
+		alert(result);
+	
+	})
+	.fail(function(result){
+		
+		alert("error:"+result);	
+})
+});
+	function bookget(){
+		var url="http://localhost:8080/Library/lib?operation=bookget";
+	$.ajax({
+		url:url,
+		type:'POST'
+	})
+	.done(function(result){
+		var array=JSON.parse(result);
+
+		var table="<table border='2px solid ' class='table'><tr><th>bookid</th><th>bookname</th><th>authorname</th><th>cat</th></tr>"
+
+	    for(i=0;i<array.length;i++){
+	    	table+="<tr>"
+		 	    table+="<td>"+array[i].bookid+"</td>"
+		 		table+="<td>"+array[i].bookname+"</td>"
+		 		table+="<td>"+array[i].authorname+"</td>"
+		 		table+="<td>"+array[i].cat+"</td>"
+		 		
+		 		table+="</tr>";
+		 	}
+		table+="</table>";
+		 	$(".getAll")[0].innerHTML=table;	
+
+		 })
+		 .fail(function(result){
+		 	alert("error");
+		 })
+		 
+	}
 });
