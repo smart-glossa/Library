@@ -126,5 +126,58 @@ $(document)
 										});
 
 									})
+									$("#Id").click(function(){
+										var name =$("#Name").val();
+										var password=$("#password").val();
+										var gender=$("#Gender").val();
+									    var mobileno=$("#Mobileno").val();
+									    var address=$("#Address").val();
+										var url="http://localhost:8080/Library/lib?operation=getonly&Name="+name+"&password="+password+"&Gender="+gender+"&Mobileno="+mobileno+"&Address="+address;
+										$.ajax({
+											url:url,
+											type:'post'})
+											
+										.done(function(result){
+											alert(result);
+										
+										})
+										.fail(function(result){
+											
+											alert("error:"+result);	
+									})
+									});
+					function getAlls(){
+						var url="http://localhost:8080/Library/lib?operation=getAlls";
+					$.ajax({
+						url:url,
+						type:'POST'
+					})
+					.done(function(result){
+						var array=JSON.parse(result);
+
+						var table="<table border='2px solid ' class='table'><tr><th>Id</th><th>Name</th><th>password</th><th>Gender</th><th>Mobileno</th><th>Address</th></tr>"
+
+					    for(i=0;i<array.length;i++){
+					    	table+="<tr>"
+						 	    table+="<td>"+array[i].Id+"</td>"
+						 		table+="<td>"+array[i].Name+"</td>"
+						 		table+="<td>"+array[i].password+"</td>"
+						 		table+="<td>"+array[i].Gender+"</td>"
+						 		table+="<td>"+array[i].mobileno+"</td>"
+						 		table+="<td>"+array[i].Address+"</td>"
+						 		
+						 		
+						 		table+="</tr>";
+						 	}
+						table+="</table>";
+						 	$(".getAll")[0].innerHTML=table;	
+
+						 })
+						 .fail(function(result){
+						 	alert("error");
+						 })
+						 
+					}
+
 									
 				})
