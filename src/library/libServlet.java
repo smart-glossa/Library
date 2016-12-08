@@ -4,6 +4,7 @@ import java.io.IOException;
 import java.sql.Connection;
 import java.sql.DriverManager;
 import java.sql.ResultSet;
+import java.sql.SQLException;
 import java.sql.Statement;
 
 import javax.servlet.ServletException;
@@ -112,10 +113,10 @@ public class libServlet extends HttpServlet {
 				Class.forName("com.mysql.jdbc.Driver");
 				Connection con = DriverManager.getConnection("jdbc:mysql://localhost:3306/student", "root", "root");
 				Statement stat = con.createStatement();
-				String query = "Select * from student where sid=" + id + "";
+				String query = "select * from student where sid=" + id + "";
 				ResultSet rset = stat.executeQuery(query);
 				if (rset.next()) {
-					res1.put("stdId", rset.getInt(1));
+					// res1.put("stdId", rset.getInt(1));
 					res1.put("name", rset.getString(2));
 					res1.put("gender", rset.getString(3));
 					res1.put("dep", rset.getString(4));
@@ -125,6 +126,7 @@ public class libServlet extends HttpServlet {
 					res1.put("rdate", rset.getString(8));
 
 				}
+				res1.put("status", 1);
 			} catch (Exception e) {
 				res1.put("status", 0);
 				// TODO Auto-generated catch block
@@ -149,7 +151,7 @@ public class libServlet extends HttpServlet {
 					obj.put("name", rs.getString(2));
 					obj.put("gender", rs.getString(3));
 					obj.put("dep", rs.getString(4));
-					obj.put("year", rs.getString(5));
+					obj.put("Year", rs.getString(5));
 					obj.put("contact", rs.getString(6));
 					obj.put("email", rs.getString(7));
 					obj.put("rdate", rs.getString(8));
@@ -177,8 +179,8 @@ public class libServlet extends HttpServlet {
 				Class.forName("com.mysql.jdbc.Driver");
 				Connection con = DriverManager.getConnection("jdbc:mysql://localhost:3306/student", "root", "root");
 				Statement stat = con.createStatement();
-				String query = " insert into book(bookid,bookname,authorname,cat)values("+bookid+",'" + bookname + "','"
-						+aname+ "','"+cat+"')";
+				String query = " insert into book(bookid,bookname,authorname,cat)values(" + bookid + ",'" + bookname
+						+ "','" + aname + "','" + cat + "')";
 				stat.execute(query);
 				obj1.put("status", 1);
 
@@ -187,19 +189,20 @@ public class libServlet extends HttpServlet {
 				e.printStackTrace();
 			}
 			response.getWriter().print(obj1);
-			
+
 		} else if (operation.equals("bookupdate")) {
 			int bookid = Integer.parseInt(request.getParameter("bookid"));
 			String bookname = request.getParameter("bookname");
-			String aname=request.getParameter("aname");
-			String cat=request.getParameter("cat");
+			String aname = request.getParameter("aname");
+			String cat = request.getParameter("cat");
 			JSONObject obj3 = new JSONObject();
 
 			try {
 				Class.forName("com.mysql.jdbc.Driver");
 				Connection con = DriverManager.getConnection("jdbc:mysql://localhost:3306/student", "root", "root");
 				Statement stat = con.createStatement();
-				String query = " update book set bookname='" + bookname + "',authorname='"+aname+"',cat='"+cat+"' where bookid=" + bookid;
+				String query = " update book set bookname='" + bookname + "',authorname='" + aname + "',cat='" + cat
+						+ "' where bookid=" + bookid;
 				stat.execute(query);
 				obj3.put("status", 1);
 
@@ -240,7 +243,7 @@ public class libServlet extends HttpServlet {
 					obj5.put("bookid", rs.getInt(1));
 					obj5.put("booname", rs.getString(2));
 					obj5.put("aname", rs.getString(3));
-					obj5.put("cat",rs.getString(4));
+					obj5.put("cat", rs.getString(4));
 				}
 				obj5.put("status", 1);
 			} catch (Exception e) {
@@ -264,7 +267,7 @@ public class libServlet extends HttpServlet {
 					ob.put("bookid", rs.getInt(1));
 					ob.put("bookname", rs.getString(2));
 					ob.put("aname", rs.getString(3));
-					ob.put("cat",rs.getString(4));
+					ob.put("cat", rs.getString(4));
 					re1.put(ob);
 				}
 
@@ -352,7 +355,7 @@ public class libServlet extends HttpServlet {
 					get.put("Name", rs.getString(2));
 					get.put("Gender", rs.getString(4));
 					get.put("MoblieNo", rs.getString(5));
-					// get.put("Password",rs.getString(5));
+					get.put("addr", rs.getString(6));
 
 				}
 				get.put("status", 1);
@@ -384,6 +387,101 @@ public class libServlet extends HttpServlet {
 				error.put("status", 0);
 			}
 			response.getWriter().print(all);
+		} else if (operation.equals("addborrow")) {
+			JSONObject books = new JSONObject();
+			int studid = Integer.parseInt(request.getParameter("sid"));
+			String name = request.getParameter("name");
+			String bid = request.getParameter("bid");
+			String cat = request.getParameter("cat");
+			String bdate = request.getParameter("bdate");
+			// String rdate=request.getParameter("rdate");
+
+			try {
+				Class.forName("com.mysql.jdbc.Driver");
+				Connection connection = DriverManager.getConnection("jdbc:mysql://localhost:3306/student", "root",
+						"root");
+				Statement statement = connection.createStatement();
+				String query = "insert into books(sid,name,bid,cat,bdate)values(" + studid + ",'" + name + "','" + bid
+						+ "','" + cat + "','" + bdate + "')";
+				statement.execute(query);
+				books.put("status", 1);
+			} catch (Exception e) {
+				// TODO Auto-generated catch block
+				books.put("status", 0);
+				e.printStackTrace();
+			}
+			response.getWriter().print(books);
+		} else if (operation.equals("rupdate")) {
+			JSONObject rup = new JSONObject();
+			int studid = Integer.parseInt(request.getParameter("studid"));
+			String bdate = request.getParameter("bdate");
+			String rdate = request.getParameter("rdate");
+			try {
+				Class.forName("com.mysql.jdbc.Driver");
+				Connection connection = DriverManager.getConnection("jdbc:mysql://localhost:3306/student", "root",
+						"root");
+				Statement stat = connection.createStatement();
+				String query = "update books set rdate='" + rdate + "' where sid=" + studid + " and bdate=" + bdate;
+				stat.execute(query);
+				rup.put("status", 1);
+
+			} catch (Exception e) {
+				// TODO: handle exception
+				rup.put("status", 0);
+				e.printStackTrace();
+			}
+			response.getWriter().print(rup);
+		} else if (operation.equals("getbr")) {
+			JSONObject brget = new JSONObject();
+			int studid = Integer.parseInt(request.getParameter("studid"));
+			try {
+				Class.forName("com.mysql.jdbc.Driver");
+				Connection connection = DriverManager.getConnection("jdbc:mysql://localhost:3306/student", "root",
+						"root");
+				Statement stat = connection.createStatement();
+				String query = "select * from where sid=" + studid + "";
+				ResultSet rs = stat.executeQuery(query);
+				if (rs.next()) {
+					brget.put("name", rs.getString(2));
+					brget.put("bid", rs.getString(3));
+					brget.put("cat", rs.getString(4));
+					brget.put("bdate", rs.getString(5));
+
+				}
+				brget.put("status", 1);
+			} catch (Exception e) {
+				brget.put("status", 0);
+				// TODO: handle exception
+			}
+			response.getWriter().print(brget);
+		} else if (operation.equals("getvalue")) {
+			JSONObject nn = new JSONObject();
+			int studid = Integer.parseInt(request.getParameter("sid"));
+			try {
+				Class.forName("com.mysql.jdbc.Driver");
+				Connection connection = DriverManager.getConnection("jdbc:mysql://localhost:3306/student", "root",
+						"root");
+				Statement stat = connection.createStatement();
+				String get = "select * from student where sid=" + studid + "";
+				ResultSet rs = stat.executeQuery(get);
+				if (rs.next()) {
+					nn.put("name", rs.getString(2));
+					if (rs != null) {
+						int bid = Integer.parseInt(request.getParameter("bid"));
+						String query = "select * from book where bookid=" + bid + "";
+						ResultSet rs1 = stat.executeQuery(query);
+						if (rs1.next()) {
+							nn.put("bname", rs1.getString(2));
+						}
+
+					}
+				}
+				nn.put("Status", 1);
+			} catch (Exception e) {
+				nn.put("status", 0);
+				e.printStackTrace();
+			}
+			response.getWriter().println(nn);
 		}
 	}
 }

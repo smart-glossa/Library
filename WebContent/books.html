@@ -1,0 +1,51 @@
+<!DOCTYPE html PUBLIC "-//W3C//DTD HTML 4.01 Transitional//EN" "http://www.w3.org/TR/html4/loose.dtd">
+<html>
+<head>
+<meta http-equiv="Content-Type" content="text/html; charset=ISO-8859-1">
+<title>Library</title>
+<script type="text/javascript" src="js/external/jquery.js"></script>
+<script type="text/javascript" src="js/book.js"></script>
+<link rel="stylesheet" type="text/css" href="css/style.css">
+
+</head>
+<body>
+<div class="ss">Library Management</div>
+<div class="nav">AllBooks Details </div>
+<div class="emp">
+	<center>
+		
+			<h3>Books Borrow& Return</h3>
+			<table>
+				<tr>
+					<td class="tab">StudentId<span>*</span>:</td>
+					<td><input type="text" id="sid"></input></td>
+					<td class="tab">Name<span>*</span>:</td>
+					<td><input type="text" id="name"></input>
+				</tr>
+				
+				<tr>
+				    <td class="tab">BookId<span>*</span>:</td>
+					<td><input type="text" id="bid"></input></td>
+					<td class="tab">Categry<span>*</span>:</td>
+					<td><select id="cat">
+					<option></option>
+					<option>Tamil</option>
+					<option>English</option>
+					<option>maths</option>
+					</select></td>
+				</tr>
+				<tr>
+					<td class="tab">BorrowDate<span>*</span>:</td>
+					<td><input type="date" id="bdate"></input></td>
+					<td class="tab">ReturnDate<span>*</span>:</td>
+					<td><input type="date" id="rdate"></input>
+				</tr>
+			</table>
+                        <button class="box" id="borrow">Borrow</button>
+						<button class="box" id="return">Return</button>
+						
+		
+	</center></div>
+
+</body>
+</html>

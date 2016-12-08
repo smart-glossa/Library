@@ -1,7 +1,5 @@
-/**
- * 
- */
 $(document).ready(function(){
+	getAllbooks();
 	$(document).on("click","#submit",function(key){
 		var id=$('#bookid').val();
 		var name=$('#bookname').val();
@@ -22,14 +20,15 @@ $(document).ready(function(){
 		$('#bookname').val("");
 		$('#aname').val("");
 		$('#cat').val("");
+		getAllbooks();
 					
 	} else if (result.status == 0) {
 	alert("Error occurs");
 }
 }).fail(function(result) {
 	alert("Please Check Details!..")
-	});
-})
+	})
+});
 
 
 
@@ -64,7 +63,7 @@ $(document).ready(function(){
 	   $("#cat").focus().css(
 	   "outline-color", "ff0000");
 		return;
-		}
+		}  
 		var url = "/Library/lib?operation=bookupdate&bookid="+ id+ "&bookname="+ name+ "&aname="+ author+ "&cat=" +cat;								
 		$.ajax({
 		url : url,
@@ -86,16 +85,15 @@ $(document).ready(function(){
 	}).fail(function(result) {
 	console.log(result);
 })
-})
+});
 
 $("#bookid").click(function(){
-	var name =$("#bookname").val();
-	var bauthor=$("#aname").val();
-	var bcat=$("#cat").val();
-	var url="http://localhost:8080/Library/lib?operation=bookone&bookname="+name+"&aname="+bauthor+"&cat="+bcat;
+	var bid =$("#bookid").val();
+	var url="/Library/lib?operation=bookone&bookid="+bid;
 	$.ajax({
 		url:url,
-		type:'post'})
+		type:'post'
+			})
 		
 	.done(function(result){
 		alert(result);
@@ -105,34 +103,107 @@ $("#bookid").click(function(){
 		
 		alert("error:"+result);	
 })
+})
 });
-	function bookget(){
-		var url="http://localhost:8080/Library/lib?operation=bookget";
+
+/* book return and borrow */
+$(document).ready(function(){
+	$(document).on("click","#borrow",function(key){
+		var studid=$('#sid').val();
+		var sname=$('#name').val();
+		var bid=$('#bid').val();
+		var cat=$('#cat').val();
+		var bdate=$('#bdate').val();
+		//http://localhost:8080/Library/lib?operation=addborrow&sid=1&name=sathish&bid=1999&cat=tamil&bdate=10/19/1212
+		var url= "/Library/lib?operation=addborrow&sid="+ studid + "&name=" + sname + "&bid="+bid + "&cat=" + cat+"&bdate="+bdate;
+        $.ajax({
+        	url:url,
+        	type:'POST'
+
+        })
+        
+        .done(function(result) {
+			result = JSON.parse(result);
+		   if (result.status == 1) {
+		   alert("SuccessFully Added");
+		   $('#sid').val("");
+		  $('#name').val("");
+		$('#bid').val("");
+		$('#cat').val("");
+		$('#bdate').val("");
+					
+	} else if (result.status == 0) {
+	alert("Error occurs");
+}
+}).fail(function(result) {
+	alert("Please Check Details!..")
+	})
+});
+$(document).on("keyup", "#sid", function() {
+	var sid =$("#sid").val();
+	var bid=$('#bid').val();
+	//http://localhost:8080/Library/lib?operation=getvalue&sid=1&bid=1
+	var url="/Library/lib?operation=getvalue&sid="+sid+"&bid="+bid;
 	$.ajax({
 		url:url,
-		type:'POST'
-	})
+		type:"POST"
+			})
+		
 	.done(function(result){
-		var array=JSON.parse(result);
-
-		var table="<table border='2px solid ' class='table'><tr><th>bookid</th><th>bookname</th><th>authorname</th><th>cat</th></tr>"
-
-	    for(i=0;i<array.length;i++){
-	    	table+="<tr>"
-		 	    table+="<td>"+array[i].bookid+"</td>"
-		 		table+="<td>"+array[i].bookname+"</td>"
-		 		table+="<td>"+array[i].authorname+"</td>"
-		 		table+="<td>"+array[i].cat+"</td>"
-		 		
-		 		table+="</tr>";
-		 	}
-		table+="</table>";
-		 	$(".getAll")[0].innerHTML=table;	
-
-		 })
-		 .fail(function(result){
-		 	alert("error");
-		 })
-		 
+		 result = JSON.parse(result);
+         var Name = result.name;
+         var cat=result.cat;
+         $("#name").val(Name);
+         $("#cat").val(cat);
+	})
+	.fail(function(result) {
+        alert("Some Errors Please Enter correct value");
+    })
+})
+$(document).on("click","#return",function() {
+	var id = $('#studid').val();
+	var bdate = $('#bdate').val();
+	var rdate= $('#rdate').val();																								
+	if (id == "") {
+	alert("Please Enter StudentId..");
+	$("#studid").focus().css(
+	"outline-color", "#ff0000");
+    return;
+   }
+   if (bdate === "") {
+   alert("Please Enter BorrowDate..");
+   $("#bdate").focus().css(
+   "outline-color", "#ff0000");
+	return;
+   }
+   if (rdate === "") {
+   alert("Please Enter ReturnDate..");
+   $("#rdate").focus().css(
+   "outline-color", "#ff0000");
+    return;
+   }//http://localhost:8080/Library/lib?operation=rupdate&studid=1&bdate=10/19/1212&rdate=12/10/2010
+	var url = "/Library/lib?operation=rupdate&studid="+ id+ "&bdate="+ bdate+ "&rdate="+ rdate;								
+	$.ajax({
+	url : url,
+	type : 'POST'
+	}).done(function(result) {
+	result = JSON.parse(result);
+	if (result.status === 1) {
+	alert("Updated SuccessFully");
+	$('#studid').val("");
+	$('#name').val("");
+	$('#bookid').val("");
+    $('#bdate').val("");
+	$('#cat').val("");
+	$('#rdate').val();
+    
+    } else {
+	if (result.status === 0) {
+	alert("Error occurs");
+   }
 	}
+}).fail(function(result) {
+console.log(result);
+})
+});
 });

@@ -2,8 +2,19 @@
 <html>
 <head>
 <meta charset="ISO-8859-1">
-<title>Insert title here</title>
+<title>Library</title>
 <style>
+.ss{
+background-color:#bfbfbf;
+width:1350px;
+height:100px;
+font-family:cursive;
+font-size:45px;
+padding-left:450px;
+color:#3333ff;
+top:15px;
+position:absolute;          
+}
 	h2
 	{
 		color:red;
@@ -12,33 +23,42 @@
 	{
 		width:1000px;
 		height: 200px;
-		background-color: lightgreen;
-		margin-left: 100px;
+		background-color:#bfbfbf;
+		margin-left: 120px;
+		position:absolute;
+	    top:250px;
+           
+		    
      }
 	button{
-		width: 150px;
+		width: 160px;
 	    height: 40px;
-	    font-size: 20px;
+	    font-size: 21px;
 	    font-family: Times new roman;
-	    margin-left: 70px;
+	    margin-left: 60px;
+     }
+     table{
+     padding-top:40px;
+     border-spacing:5px;  
      }
 </style>
 </head>
 <body>
+<div class="ss">Library Management</div>
 <div class="lib">
-<center><h2>Library Management</h2></center>
+
 <table>
 <tr>
 	<td><a href="student.html"><button>Student</button></a></td>
 	<td><button>SearchBook</button></td>
-	<td><button>Return</button></td>
+	<td><a  href="books.html"><button>Borrow</button></a> </td>
 	<td><button>Logout</button></td>
 	
 </tr>
 <tr>
-	<td><a href="book.html"><button>Book</button></a></td>
+	<td><a href="book.html"><button>AddBook</button></a></td>
 	<td><button>ShowBook</button></td>
-	<td><button>Borrow</button></td>
+	<td><a href="books.html"><button>Return</button></a></td>
 	<td><button>About</button></td>
 </tr>
 </table>

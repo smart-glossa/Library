@@ -5,7 +5,7 @@
 <title>Library</title>
 <script type="text/javascript" src="js/external/jquery.js"></script>
 <script type="text/javascript" src="js/stud.js"></script>
-
+<script type="text/javascript" src="js/getAll.js"></script>
 <link rel="stylesheet" type="text/css" href="css/style.css">
 
 </head>
@@ -13,7 +13,9 @@
 	
 </style>
 </head>
-<body><center>
+<div class="ss">Library Management</div>
+<div class="nav">AllStudent Details</div>
+<body onload="getAllstudent()"><center>
 <div class="emp">
 	
 		
@@ -48,11 +50,12 @@
 					<td class="tab">RegisterDate<span>*</span>:</td>
 					<td><input type="date" id="rdate"></input></td>
 				</tr>
-				
-			</table>
+			   </table>
                           <button id="submit">Submit</button>
 						<button id="update">Update</button>
 		
 	</div></center>
+	<center>
+	<div class="getAllStudent"></div></center>
 </body>
 </html>

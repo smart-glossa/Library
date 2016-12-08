@@ -5,11 +5,25 @@
 <title>Library</title>
 <script type="text/javascript" src="js/external/jquery.js"></script>
 <script type="text/javascript" src="js/emp.js"></script>
+<script type="text/javascript" src="js/getAll.js"></script>
 <link rel="stylesheet" type="text/css" href="css/style.css">
+<style type="text/css">
+.ss{
+background-color:#bfbfbf;
+width:1350px;
+height:100px;
+font-family:cursive;
+font-size:45px;
+padding-left:20px;
+color:#3333ff;
+top:15px;
+position:absolute;          
+}
+</style>
 </head>
-<body>
-</head>
-<body><center>
+<body onload="getAllEmployee()"><center>
+<div class="ss">Library Management</div>
+<div class="nav">AllEmployee Details </div>
 <div class="emp">
 	
 		
@@ -39,5 +53,7 @@
 						<button id="update">Update</button>
 		
 	</center></div>
+	<center>
+	<div class="getAllemployee"></div></center>
 	</body>
 	</html>
