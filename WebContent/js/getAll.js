@@ -31,7 +31,7 @@
 						 .fail(function(result){
 						 	alert("error");
 						 })
-						 
+						  
 					}
 
 	function getAllstudent(){
