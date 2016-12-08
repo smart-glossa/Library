@@ -7,15 +7,45 @@
 <script type="text/javascript" src="js/stud.js"></script>
 <script type="text/javascript" src="js/getAll.js"></script>
 <link rel="stylesheet" type="text/css" href="css/style.css">
-
+<style type="text/css">
+.ll {
+	background-color:#bfbfbf;
+	width:830px;
+	padding-left:40px;
+	position:absolute;
+	top:220px;
+	height:850;
+	left:230px;
+	color:white;
+	z-index: 2;
+}
+.h {
+	top: 8px;
+	left: 830px;
+	position: absolute;
+}
+</style>
+<script type="text/javascript">
+function show() {
+	if (document.getElementById('benefits').style.display == 'none') {
+		document.getElementById('benefits').style.display = 'block';
+	}
+	return false;
+}
+function hide() {
+	if (document.getElementById('benefits').style.display == 'block') {
+		document.getElementById('benefits').style.display = 'none';
+	}
+	return false;
+}
+</script>
 </head>
 <body>
-	
-</style>
-</head>
 <div class="ss">Library Management</div>
-<div class="nav">AllStudent Details</div>
-<body onload="getAllstudent()"><center>
+<div id="opener" onclick="getAllstudent()">
+		<a href="#1" onclick="return show();"><div class="nav">AllStudent Details</div></a>
+	</div>
+<center>
 <div class="emp">
 	
 		
@@ -56,6 +86,18 @@
 		
 	</div></center>
 	<center>
-	<div class="getAllStudent"></div></center>
+	<div class="ll">
+		<div id="benefits" style="display: none;">
+			<center>
+				<h1>Employee  Details</h1>
+			</center>
+			<div class="h">
+				<a onclick="return hide();"><img alt="" src="img/cancel.png"
+					width="30" height="30"></a>
+			</div>
+			<div class="getAllStudent"></div>
+		</div>
+	</div>
+	</center>
 </body>
 </html>

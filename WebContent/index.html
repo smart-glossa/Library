@@ -19,11 +19,44 @@ color:#3333ff;
 top:15px;
 position:absolute;          
 }
+.ll {
+	background-color:#bfbfbf;
+	width:880px;
+	padding-left:40px;
+	position:absolute;
+	top:150px;
+	left:230px;
+	color:white;
+	z-index: 2;
+}
+.h {
+	top: 8px;
+	left: 880px;
+	position: absolute;
+}
+
 </style>
+<script type="text/javascript">
+function show() {
+	if (document.getElementById('benefits').style.display == 'none') {
+		document.getElementById('benefits').style.display = 'block';
+	}
+	return false;
+}
+function hide() {
+	if (document.getElementById('benefits').style.display == 'block') {
+		document.getElementById('benefits').style.display = 'none';
+	}
+	return false;
+}
+</script>
 </head>
-<body onload="getAllEmployee()"><center>
+<body onload=""><center>
 <div class="ss">Library Management</div>
-<div class="nav">AllEmployee Details </div>
+<div id="opener" onclick="getAllEmployee()">
+		<a href="#1" onclick="return show();"><div class="nav">AllEmployee Details </div></a>
+	</div>
+<!--<div class="nav">AllEmployee Details </div>-->
 <div class="emp">
 	
 		
@@ -54,6 +87,17 @@ position:absolute;
 		
 	</center></div>
 	<center>
-	<div class="getAllemployee"></div></center>
+	<div class="ll">
+		<div id="benefits" style="display: none;">
+			<center>
+				<h1>Employee  Details</h1>
+			</center>
+			<div class="h">
+				<a onclick="return hide();"><img alt="" src="img/cancel.png"
+					width="30" height="30"></a>
+			</div>
+			<div class="getAllemployee"></div>
+		</div>
+	</div>
 	</body>
 	</html>

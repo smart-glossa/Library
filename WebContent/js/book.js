@@ -14,9 +14,9 @@ $(document).ready(function(){
         
         .done(function(result) {
 			result = JSON.parse(result);
-		   if (result.status == 1) {
-		   alert("SuccessFully Added");
-		  $('#bookid').val("");
+		if (result.status == 1) {
+		alert("SuccessFully Added");
+		$('#bookid').val("");
 		$('#bookname').val("");
 		$('#aname').val("");
 		$('#cat').val("");
