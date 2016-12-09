@@ -14,9 +14,9 @@ $(document).ready(function(){
         
         .done(function(result) {
 			result = JSON.parse(result);
-		if (result.status == 1) {
-		alert("SuccessFully Added");
-		$('#bookid').val("");
+		   if (result.status == 1) {
+		  alert("SuccessFully Added");
+		  $('#bookid').val("");
 		$('#bookname').val("");
 		$('#aname').val("");
 		$('#cat').val("");
@@ -87,23 +87,28 @@ $(document).ready(function(){
 })
 });
 
-$("#bookid").click(function(){
-	var bid =$("#bookid").val();
-	var url="/Library/lib?operation=bookone&bookid="+bid;
-	$.ajax({
-		url:url,
-		type:'post'
-			})
-		
-	.done(function(result){
-		alert(result);
-	
+	$(document).on("keyup", "#bookid", function() {
+		var bookid =$("#bookid").val();
+		//http://localhost:8080/Library/lib?operation=getvalue&sid=1&bid=1
+		var url="/Library/lib?operation=bookone&bookid="+bookid;
+		$.ajax({
+			url:url,
+			type:"POST"
+				})
+			
+		.done(function(result){
+			 result = JSON.parse(result);
+			 var booname=val(booname);
+	         var Name = result.aname;
+	         var cat=result.cat;
+	         $("#bookname").val(booname);
+	         $("#aname").val(Name);
+	         $("#cat").val(cat);
+		})
+		.fail(function(result) {
+	        alert("Some Errors Please Enter correct value");
+	    })
 	})
-	.fail(function(result){
-		
-		alert("error:"+result);	
-})
-})
 });
 
 /* book return and borrow */

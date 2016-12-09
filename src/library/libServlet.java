@@ -240,7 +240,7 @@ public class libServlet extends HttpServlet {
 				String query = "Select * from book where bookid=" + bookid;
 				ResultSet rs = stat.executeQuery(query);
 				if (rs.next()) {
-					obj5.put("bookid", rs.getInt(1));
+					//obj5.put("bookid", rs.getInt(1));
 					obj5.put("booname", rs.getString(2));
 					obj5.put("aname", rs.getString(3));
 					obj5.put("cat", rs.getString(4));

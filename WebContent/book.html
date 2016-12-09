@@ -5,13 +5,46 @@
 <title>Book</title>
 <script type="text/javascript" src="js/external/jquery.js"></script>
 <script type="text/javascript" src="js/book.js"></script>
+<script type="text/javascript" src="js/getAll.js"></script>
 <link rel="stylesheet" type="text/css" href="css/style.css">
-
+<style type="text/css">
+.ll {
+	background-color:#bfbfbf;
+	width:880px;
+	padding-left:50px;
+	position:absolute;
+	top:230px;
+	left:210px;
+	color:white;
+	z-index: 2;
+}
+.h {
+	top: 8px;
+	left: 890px;
+	position: absolute;
+}
+</style>
+<script type="text/javascript">
+function show() {
+	if (document.getElementById('benefits').style.display == 'none') {
+		document.getElementById('benefits').style.display = 'block';
+	}
+	return false;
+}
+function hide() {
+	if (document.getElementById('benefits').style.display == 'block') {
+		document.getElementById('benefits').style.display = 'none';
+	}
+	return false;
+}
+</script>
 </head>
 
-<body onload="getAllbooks()">
+<body>
 <div class="ss">Library Management</div>
-<div class="nav">AllBooks Details</div>
+<div id="opener" onclick="getAllbooks()">
+		<a href="#1" onclick="return show();"><div class="nav">AllBooks Details </div></a>
+	</div>
 <center>
 <div class="emp">
 	<h3>Book details</h3>
@@ -32,6 +65,17 @@
 </div>
 </center>
 <center>
-<div class="getAllbook"> </div></center>
+<div class="ll">
+		<div id="benefits" style="display: none;">
+			<center>
+				<h1>Book Details</h1>
+			</center>
+			<div class="h">
+				<a onclick="return hide();"><img alt="" src="img/cancel.png"
+					width="30" height="30"></a>
+			</div>
+			<div class="getAllbook"></div>
+		</div>
+	</div></center>
 </body>
 </html>

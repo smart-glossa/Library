@@ -159,6 +159,30 @@ $(document)
             $("#Address").val("");
         }
 })
+
+$("#Name").on("keypress", function(event) {
+    var englishAlphabetAndWhiteSpace = /[A-Za-z ]/g;
+   
+    var key = String.fromCharCode(event.which);
+    // just refer key code
+    //alert(event.keyCode);
+    // keyCode == 8  is backspace
+    // keyCode == 37 is left arrow
+    // keyCode == 39 is right arrow
+    // englishAlphabetAndWhiteSpace.test(key) does the matching, that is, test the key just typed against the regex pattern
+    if (event.keyCode == 8 || event.keyCode == 37 || event.keyCode == 39 || englishAlphabetAndWhiteSpace.test(key)) {
+        return true;
+    }
+
+    // If we got this far, just return false because a disallowed key was typed.
+    $("#errmsg").html("Please Only Letters").show().fadeOut(4000);
+    return false;
+});
+
+$('#Name').on("paste",function(e)
+{
+    e.preventDefault();
+});
 				
 									
 				});
