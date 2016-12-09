@@ -1,6 +1,4 @@
-/**
- * 
- */
+
 // Add operation on employee
 $(document)
 		.ready(
