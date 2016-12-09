@@ -31,7 +31,7 @@
 						 .fail(function(result){
 						 	alert("error");
 						 })
-						 
+						  
 					}
 
 	function getAllstudent(){
@@ -42,7 +42,7 @@
 	})
 	.done(function(result){
 		var array=JSON.parse(result);
-	    var table="<table border='1px solid ' class='table'><tr><th>sid</th><th>Name</th><th>gender</th><th>dep</th><th>year</th><th>contact</th><th>email</th><th>rdate</th></tr>"
+	    var table="<table border='1px solid ' class='table'><tr><th>StudentId</th><th>StudentName</th><th>Gender</th><th>Department</th><th>Year</th><th>ContactNo</th><th>Email</th><th>RegisterDate</th></tr>"
 
 	     for(i=0;i<array.length;i++){
 	     	table+="<tr>"

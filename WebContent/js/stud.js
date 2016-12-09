@@ -12,6 +12,48 @@ $(document).ready(function(){
 		var contact=$('#Contact').val();
 		var email=$('#Email').val();
 		var date=$('#rdate').val();
+		if(id=="")
+		{
+		alert("Please Enter your StudentId");
+		return;
+		}
+		if(name=="")
+		{
+		alert("Please Enter your StudentName");
+		return;
+		}
+		if(gender=="")
+		{
+		alert("Please Enter your Gender");
+		return;
+		}
+		if(dept=="")
+		{
+		alert("Please Enter your Department");
+		return;
+		}
+		if(year=="")
+		{
+		alert("Please Enter your Year");
+		return;
+		}
+		if(contact=="")
+		{
+		alert("Please Enter your ContactNo");
+		return;
+		}
+		if(email=="")
+		{
+		alert("Please Enter your Email");
+		return;
+		}
+		if(date=="")
+		{
+		alert("Please Enter your RegisterDate");
+		return;
+		}
+				
+	
 		var url= "/Library/lib?operation=add&sId="+ id + "&Name=" + name + "&Gender="+ gender+ "&dep=" + dept+ "&Year=" + year + "&Contact="+ contact+ "&Email="+email+ "&rdate="+date;
 
         $.ajax({
