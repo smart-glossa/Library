@@ -16,7 +16,37 @@ $(document)
 								var gender = $('#Gender').val();
 								var mob = $('#Mobileno').val();
 								var addr = $('#Address').val();
-								var url = "/Library/lib?operation=empAdd&Id="
+								if(id==""){
+									alert("please Enter id");
+									return;
+								}
+								if(name=="")
+									{
+									alert("please Enter your name");
+									return;
+									}
+								if(password=="")
+								{
+								alert("please Enter your password");
+								return;
+								}
+								if(gender=="")
+								{
+								alert("please Enter gender");
+								return;
+								}
+								if(mob=="")
+								{
+								alert("please Enter your mobileno");
+								return;
+								}
+								if(addr=="")
+								{
+								alert("please Enter your Address");
+								return;
+								}
+							
+					                 var url = "/Library/lib?operation=empAdd&Id="
 										+ id + "&Name=" + name + "&password="
 										+ password + "&Gender=" + gender
 										+ "&Mobileno=" + mob + "&Address="
@@ -54,8 +84,7 @@ $(document)
 										var password = $('#password').val();
 										var gender = $('#Gender').val();
 										var mob = $('#Mobileno').val();
-										var addr = $('#Address').val();
-										if (id == "") {
+										var addr = $('#Address').val();									if (id == "") {
 											alert("Please Enter EmployeeId..");
 											$("#Id").focus().css(
 													"outline-color", "#ff0000");

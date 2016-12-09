@@ -5,6 +5,26 @@ $(document).ready(function(){
 		var name=$('#bookname').val();
 		var author=$('#aname').val();
 		var cat=$('#cat').val();
+		if(id=="")
+		{
+		alert("Please Enter your BookId");
+		return;
+		}
+		if(name=="")
+		{
+		alert("Please Enter your BookName");
+		return;
+		}
+		if(author=="")
+		{
+		alert("Please Enter your AuthorName");
+		return;
+		}
+		if(cat=="")
+		{
+		alert("Please Enter your Category");
+		return;
+		}
 		var url= "/Library/lib?operation=bookadd&bookid="+ id + "&bookname=" + name + "&aname="+author + "&cat=" + cat;
         $.ajax({
         	url:url,
