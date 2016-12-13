@@ -45,3 +45,13 @@ CREATE TABLE `book` (
   `cat` varchar(45) default NULL,
   PRIMARY KEY  (`bookid`)
 ) ENGINE=InnoDB DEFAULT CHARSET=latin1
+
+
+CREATE TABLE `books` (
+  `sid` int(50) default NULL,
+  `name` varchar(100) default NULL,
+  `bid` varchar(100) default NULL,
+  `cat` varchar(100) default NULL,
+  `bdate` varchar(100) default NULL,
+  `rdate` varchar(100) default NULL
+) ENGINE=InnoDB DEFAULT CHARSET=latin1
