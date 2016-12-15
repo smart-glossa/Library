@@ -14,8 +14,9 @@ public class LibClass {
 	public void add(int id, String name, String gender, String dpt, String year, String contact, String email,
 			String date) {
 		try {
-			Class.forName(LibConstat.DRIVER);
-			Connection con = DriverManager.getConnection(LibConstat.url, LibConstat.USERNAME, LibConstat.PASSWORD);
+			Class.forName(LibConstat.MYSQL_DRIVER);
+			Connection con = DriverManager.getConnection(LibConstat.MYSQL_URL, LibConstat.MYSQL_USERNAME,
+					LibConstat.MYSQL_PASSWORD);
 			Statement stat = con.createStatement();
 			String query = "insert into student(sid,Name,gender,dep,year,contact,email,rdate)values(" + id + ",'" + name
 					+ "','" + gender + "','" + dpt + "','" + year + "','" + contact + "'," + "'" + email + "','" + date
@@ -30,8 +31,9 @@ public class LibClass {
 			String date) throws SQLException {
 
 		try {
-			Class.forName(LibConstat.DRIVER);
-			Connection con = DriverManager.getConnection(LibConstat.url, LibConstat.USERNAME, LibConstat.PASSWORD);
+			Class.forName(LibConstat.MYSQL_DRIVER);
+			Connection con = DriverManager.getConnection(LibConstat.MYSQL_URL, LibConstat.MYSQL_USERNAME,
+					LibConstat.MYSQL_PASSWORD);
 			Statement stat = con.createStatement();
 			String query = "update student set Name='" + Name + "',gender='" + gender + "',dep='" + dpt + "',year='"
 					+ year + "',contact='" + contact + "',email='" + email + "',rdate='" + date + "' where sid=" + id;
@@ -45,8 +47,9 @@ public class LibClass {
 	public void delete(int id) {
 
 		try {
-			Class.forName(LibConstat.DRIVER);
-			Connection con = DriverManager.getConnection(LibConstat.url, LibConstat.USERNAME, LibConstat.PASSWORD);
+			Class.forName(LibConstat.MYSQL_DRIVER);
+			Connection con = DriverManager.getConnection(LibConstat.MYSQL_URL, LibConstat.MYSQL_USERNAME,
+					LibConstat.MYSQL_PASSWORD);
 			Statement stat = con.createStatement();
 			String query = "delete from student where sid=" + id;
 			stat.execute(query);
@@ -59,8 +62,9 @@ public class LibClass {
 	public JSONObject getone(int sId) {
 		JSONObject res1 = new JSONObject();
 		try {
-			Class.forName(LibConstat.DRIVER);
-			Connection con = DriverManager.getConnection(LibConstat.url, LibConstat.USERNAME, LibConstat.PASSWORD);
+			Class.forName(LibConstat.MYSQL_DRIVER);
+			Connection con = DriverManager.getConnection(LibConstat.MYSQL_URL, LibConstat.MYSQL_USERNAME,
+					LibConstat.MYSQL_PASSWORD);
 			Statement stat = con.createStatement();
 			String query = "select * from student where sid=" + sId;
 			ResultSet rset = stat.executeQuery(query);
@@ -82,8 +86,9 @@ public class LibClass {
 	public JSONArray getAll() {
 		JSONArray res2 = new JSONArray();
 		try {
-			Class.forName(LibConstat.DRIVER);
-			Connection con = DriverManager.getConnection(LibConstat.url, LibConstat.USERNAME, LibConstat.PASSWORD);
+			Class.forName(LibConstat.MYSQL_DRIVER);
+			Connection con = DriverManager.getConnection(LibConstat.MYSQL_URL, LibConstat.MYSQL_USERNAME,
+					LibConstat.MYSQL_PASSWORD);
 			Statement stat = con.createStatement();
 			String query = "select * from student";
 			ResultSet rs = stat.executeQuery(query);
@@ -108,8 +113,9 @@ public class LibClass {
 	public void bookadd(int bookid, String bookname, String aname, String cat) {
 
 		try {
-			Class.forName(LibConstat.DRIVER);
-			Connection con = DriverManager.getConnection(LibConstat.url, LibConstat.USERNAME, LibConstat.PASSWORD);
+			Class.forName(LibConstat.MYSQL_DRIVER);
+			Connection con = DriverManager.getConnection(LibConstat.MYSQL_URL, LibConstat.MYSQL_USERNAME,
+					LibConstat.MYSQL_PASSWORD);
 			Statement stat = con.createStatement();
 			String query = " insert into book(bookid,bookname,authorname,cat)values(" + bookid + ",'" + bookname + "','"
 					+ aname + "','" + cat + "')";
@@ -123,8 +129,9 @@ public class LibClass {
 	public void bookupdate(int bookid, String bookname, String aname, String cat) {
 
 		try {
-			Class.forName(LibConstat.DRIVER);
-			Connection con = DriverManager.getConnection(LibConstat.url, LibConstat.USERNAME, LibConstat.PASSWORD);
+			Class.forName(LibConstat.MYSQL_DRIVER);
+			Connection con = DriverManager.getConnection(LibConstat.MYSQL_URL, LibConstat.MYSQL_USERNAME,
+					LibConstat.MYSQL_PASSWORD);
 			Statement stat = con.createStatement();
 			String query = "update book set bookname='" + bookname + "',authorname='" + aname + "',cat='" + cat
 					+ "'where bookid=" + bookid;
@@ -138,8 +145,9 @@ public class LibClass {
 	public void bookdelete(int bookid) {
 
 		try {
-			Class.forName(LibConstat.DRIVER);
-			Connection con = DriverManager.getConnection(LibConstat.url, LibConstat.USERNAME, LibConstat.PASSWORD);
+			Class.forName(LibConstat.MYSQL_DRIVER);
+			Connection con = DriverManager.getConnection(LibConstat.MYSQL_URL, LibConstat.MYSQL_USERNAME,
+					LibConstat.MYSQL_PASSWORD);
 			Statement stat = con.createStatement();
 			String query = "delete from book where bookid=" + bookid;
 			stat.execute(query);
@@ -152,8 +160,9 @@ public class LibClass {
 	public JSONObject bookone(int bookid) {
 		JSONObject obj5 = new JSONObject();
 		try {
-			Class.forName(LibConstat.DRIVER);
-			Connection con = DriverManager.getConnection(LibConstat.url, LibConstat.USERNAME, LibConstat.PASSWORD);
+			Class.forName(LibConstat.MYSQL_DRIVER);
+			Connection con = DriverManager.getConnection(LibConstat.MYSQL_URL, LibConstat.MYSQL_USERNAME,
+					LibConstat.MYSQL_PASSWORD);
 			Statement stat = con.createStatement();
 			String query = "select * from book where bookid=" + bookid;
 			ResultSet rs = stat.executeQuery(query);
@@ -171,8 +180,9 @@ public class LibClass {
 	public JSONArray bookget() {
 		JSONArray re1 = new JSONArray();
 		try {
-			Class.forName(LibConstat.DRIVER);
-			Connection con = DriverManager.getConnection(LibConstat.url, LibConstat.USERNAME, LibConstat.PASSWORD);
+			Class.forName(LibConstat.MYSQL_DRIVER);
+			Connection con = DriverManager.getConnection(LibConstat.MYSQL_URL, LibConstat.MYSQL_USERNAME,
+					LibConstat.MYSQL_PASSWORD);
 			Statement stat = con.createStatement();
 			String query = "select * from book";
 			ResultSet rs = stat.executeQuery(query);
@@ -194,8 +204,9 @@ public class LibClass {
 	public void empAdd(int id, String name, String password, String gender, String mobileno, String address) {
 
 		try {
-			Class.forName(LibConstat.DRIVER);
-			Connection con = DriverManager.getConnection(LibConstat.url, LibConstat.USERNAME, LibConstat.PASSWORD);
+			Class.forName(LibConstat.MYSQL_DRIVER);
+			Connection con = DriverManager.getConnection(LibConstat.MYSQL_URL, LibConstat.MYSQL_USERNAME,
+					LibConstat.MYSQL_PASSWORD);
 			Statement stat = con.createStatement();
 			String query = "insert into employee(Id,Name,password,Gender,Mobileno,Address)values(" + id + ",'" + name
 					+ "','" + password + "','" + gender + "','" + mobileno + "','" + address + "')";
@@ -209,8 +220,9 @@ public class LibClass {
 	public void empdelete(int id) {
 
 		try {
-			Class.forName(LibConstat.DRIVER);
-			Connection con = DriverManager.getConnection(LibConstat.url, LibConstat.USERNAME, LibConstat.PASSWORD);
+			Class.forName(LibConstat.MYSQL_DRIVER);
+			Connection con = DriverManager.getConnection(LibConstat.MYSQL_URL, LibConstat.MYSQL_USERNAME,
+					LibConstat.MYSQL_PASSWORD);
 			Statement stat = con.createStatement();
 			String query = "delete from employee where Id=" + id;
 			;
@@ -224,8 +236,9 @@ public class LibClass {
 	public void empupdate(int id, String name, String gender, String mobileno, String address) {
 
 		try {
-			Class.forName(LibConstat.DRIVER);
-			Connection con = DriverManager.getConnection(LibConstat.url, LibConstat.USERNAME, LibConstat.PASSWORD);
+			Class.forName(LibConstat.MYSQL_DRIVER);
+			Connection con = DriverManager.getConnection(LibConstat.MYSQL_URL, LibConstat.MYSQL_USERNAME,
+					LibConstat.MYSQL_PASSWORD);
 			Statement stat = con.createStatement();
 			String query = "update employee set Name='" + name + "',Gender='" + gender + "',Mobileno='" + mobileno
 					+ "',Address='" + address + "' where Id=" + id;
@@ -239,8 +252,9 @@ public class LibClass {
 	public JSONObject getonly(int id) {
 		JSONObject get = new JSONObject();
 		try {
-			Class.forName(LibConstat.DRIVER);
-			Connection con = DriverManager.getConnection(LibConstat.url, LibConstat.USERNAME, LibConstat.PASSWORD);
+			Class.forName(LibConstat.MYSQL_DRIVER);
+			Connection con = DriverManager.getConnection(LibConstat.MYSQL_URL, LibConstat.MYSQL_USERNAME,
+					LibConstat.MYSQL_PASSWORD);
 			Statement stat = con.createStatement();
 			String query = "select * from employee where Id=" + id;
 			ResultSet rs = stat.executeQuery(query);
@@ -261,8 +275,9 @@ public class LibClass {
 	public JSONArray getAlls() {
 		JSONArray all = new JSONArray();
 		try {
-			Class.forName(LibConstat.DRIVER);
-			Connection con = DriverManager.getConnection(LibConstat.url, LibConstat.USERNAME, LibConstat.PASSWORD);
+			Class.forName(LibConstat.MYSQL_DRIVER);
+			Connection con = DriverManager.getConnection(LibConstat.MYSQL_URL, LibConstat.MYSQL_USERNAME,
+					LibConstat.MYSQL_PASSWORD);
 			Statement stat = con.createStatement();
 			String query = "select * from employee";
 			ResultSet rs = stat.executeQuery(query);
@@ -282,13 +297,15 @@ public class LibClass {
 
 	}
 
-	public void addborrow(int studid, int bkid,int empid) {
+	public void addborrow(int studid, int bkid, int empid) {
 
 		try {
-			Class.forName(LibConstat.DRIVER);
-			Connection con = DriverManager.getConnection(LibConstat.url, LibConstat.USERNAME, LibConstat.PASSWORD);
+			Class.forName(LibConstat.MYSQL_DRIVER);
+			Connection con = DriverManager.getConnection(LibConstat.MYSQL_URL, LibConstat.MYSQL_USERNAME,
+					LibConstat.MYSQL_PASSWORD);
 			Statement stat = con.createStatement();
-			String query = "insert into borrow(sid,bookid,bempid,bdate)values(" + studid + "," +bkid + "," + empid+",now())";
+			String query = "insert into borrow(sid,bookid,bempid,bdate)values(" + studid + "," + bkid + "," + empid
+					+ ",now())";
 			stat.execute(query);
 
 		} catch (Exception e) {
@@ -299,8 +316,9 @@ public class LibClass {
 	public void rupdate(int studid, String bdate, String rdate) {
 
 		try {
-			Class.forName(LibConstat.DRIVER);
-			Connection con = DriverManager.getConnection(LibConstat.url, LibConstat.USERNAME, LibConstat.PASSWORD);
+			Class.forName(LibConstat.MYSQL_DRIVER);
+			Connection con = DriverManager.getConnection(LibConstat.MYSQL_URL, LibConstat.MYSQL_USERNAME,
+					LibConstat.MYSQL_PASSWORD);
 			Statement stat = con.createStatement();
 			String query = "update books set rdate='" + rdate + "' where sid=" + studid + " and bdate=" + bdate;
 			stat.execute(query);
@@ -314,15 +332,16 @@ public class LibClass {
 	public JSONObject getborrow(int eid) {
 		JSONObject brget = new JSONObject();
 		try {
-			Class.forName(LibConstat.DRIVER);
-			Connection con = DriverManager.getConnection(LibConstat.url, LibConstat.USERNAME, LibConstat.PASSWORD);
+			Class.forName(LibConstat.MYSQL_DRIVER);
+			Connection con = DriverManager.getConnection(LibConstat.MYSQL_URL, LibConstat.MYSQL_USERNAME,
+					LibConstat.MYSQL_PASSWORD);
 			Statement stat = con.createStatement();
 			String query = "select * from borrow where bempid=" + eid;
 			ResultSet rs = stat.executeQuery(query);
 			if (rs.next()) {
 				brget.put("sid", rs.getString(2));
 				brget.put("bkid", rs.getString(3));
-				
+
 			}
 
 		} catch (Exception e) {
@@ -330,72 +349,70 @@ public class LibClass {
 		}
 		return brget;
 	}
-	public JSONArray borrowAll()
-	{
-		JSONArray borrow=new JSONArray();
-		try 
-		{
-			Class.forName(LibConstat.DRIVER);
-			Connection con=DriverManager.getConnection(LibConstat.url,LibConstat.USERNAME,LibConstat.PASSWORD);
-			Statement stat=con.createStatement();
-			String query="select * from borrow";
-			ResultSet rs=stat.executeQuery(query);
-			while(rs.next()){
-			 JSONObject obj=new JSONObject();
-			 obj.put("bid", rs.getInt(1));
-			 obj.put("sid", rs.getInt(2));
-			 obj.put("bookid",rs.getInt(3));
-			 obj.put("empid",rs.getInt(4));
-			 obj.put("bdate", rs.getInt(5));
-			 borrow.put(obj);
+
+	public JSONArray borrowAll() {
+		JSONArray borrow = new JSONArray();
+		try {
+			Class.forName(LibConstat.MYSQL_DRIVER);
+			Connection con = DriverManager.getConnection(LibConstat.MYSQL_URL, LibConstat.MYSQL_USERNAME,
+					LibConstat.MYSQL_PASSWORD);
+			Statement stat = con.createStatement();
+			String query = "select * from borrow";
+			ResultSet rs = stat.executeQuery(query);
+			while (rs.next()) {
+				JSONObject obj = new JSONObject();
+				obj.put("bid", rs.getInt(1));
+				obj.put("sid", rs.getInt(2));
+				obj.put("bookid", rs.getInt(3));
+				obj.put("empid", rs.getInt(4));
+				obj.put("bdate", rs.getInt(5));
+				borrow.put(obj);
 			}
-		}
-		catch(Exception e){
-			
+		} catch (Exception e) {
+
 		}
 		return borrow;
-		
-	}
-	public void addreturn(int sid,int rempid) {
-		try
-		{
-			Class.forName(LibConstat.DRIVER);
-			Connection con=DriverManager.getConnection(LibConstat.url,LibConstat.USERNAME,LibConstat.PASSWORD);
-			Statement stat=con.createStatement();
-			String query="insert into returnbook(sid,rempid,rdate)values("+sid+","+rempid+",now())";
-			stat.execute(query);
-		}
-		catch(Exception e){
-			
-		}
-		
+
 	}
 
-	public JSONObject borrowones(int sid)
-	{
-		JSONObject one=new JSONObject();
-		try 
-		{
-			Class.forName(LibConstat.DRIVER);
-			Connection con=DriverManager.getConnection(LibConstat.url,LibConstat.USERNAME,LibConstat.PASSWORD);
-			Statement stat=con.createStatement();
-			String query=" select borrow.bdate,borrow.bempid,returnbook.rdate,returnbook.rempid from borrow,returnbook where borrow.sid="+sid+" and returnbook.sid="+sid+"";
-			ResultSet rs=stat.executeQuery(query);
-			while(rs.next()){
-			
-			 one.put("bid", rs.getInt(1));
-			 one.put("sid", rs.getInt(2));
-			 one.put("bookid",rs.getInt(3));
-			 one.put("rempid",rs.getInt(4));
-			 one.put("bdate", rs.getInt(5));
-			
-			}
+	public void addreturn(int sid, int rempid) {
+		try {
+			Class.forName(LibConstat.MYSQL_DRIVER);
+			Connection con = DriverManager.getConnection(LibConstat.MYSQL_URL, LibConstat.MYSQL_USERNAME,
+					LibConstat.MYSQL_PASSWORD);
+			Statement stat = con.createStatement();
+			String query = "insert into returnbook(sid,rempid,rdate)values(" + sid + "," + rempid + ",now())";
+			stat.execute(query);
+		} catch (Exception e) {
+
 		}
-		catch(Exception e){
-			
+
+	}
+
+	public JSONObject borrowones(int sid) {
+		JSONObject one = new JSONObject();
+		try {
+			Class.forName(LibConstat.MYSQL_DRIVER);
+			Connection con = DriverManager.getConnection(LibConstat.MYSQL_URL, LibConstat.MYSQL_USERNAME,
+					LibConstat.MYSQL_PASSWORD);
+			Statement stat = con.createStatement();
+			String query = " select borrow.bdate,borrow.bempid,returnbook.rdate,returnbook.rempid from borrow,returnbook where borrow.sid="
+					+ sid + " and returnbook.sid=" + sid + "";
+			ResultSet rs = stat.executeQuery(query);
+			while (rs.next()) {
+
+				one.put("bid", rs.getInt(1));
+				one.put("sid", rs.getInt(2));
+				one.put("bookid", rs.getInt(3));
+				one.put("rempid", rs.getInt(4));
+				one.put("bdate", rs.getInt(5));
+
+			}
+		} catch (Exception e) {
+
 		}
 		return one;
-		
+
 	}
 
 }
