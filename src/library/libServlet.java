@@ -230,11 +230,9 @@ public class libServlet extends HttpServlet {
 		} else if (operation.equals("addborrow")) {
 			JSONObject books = new JSONObject();
 			int studid = Integer.parseInt(request.getParameter("sid"));
-			int bkid= Integer.parseInt(request.getParameter("bookid"));
-			int empid= Integer.parseInt(request.getParameter("empid"));
-			
-			
-			
+			int bkid = Integer.parseInt(request.getParameter("bookid"));
+			int empid = Integer.parseInt(request.getParameter("empid"));
+
 			try {
 				LibClass library = new LibClass();
 				library.addborrow(studid, bkid, empid);
@@ -264,44 +262,46 @@ public class libServlet extends HttpServlet {
 			try {
 				LibClass library2 = new LibClass();
 				brget = library2.getborrow(eid);
-				} catch (Exception e) {
+			} catch (Exception e) {
 				brget.put("status", 0);
 			}
 			response.getWriter().print(brget);
-		}
-		else if(operation.equals("borrowAll")){
-			JSONArray borrow=new JSONArray();
-			try
-			{
-				LibClass bor=new LibClass();
-				borrow=bor.borrowAll();
-			}
-			catch(Exception e)
-			{
-				JSONObject error=new JSONObject();
-				error.put("status",0);
+		} else if (operation.equals("borrowAll")) {
+			JSONArray borrow = new JSONArray();
+			try {
+				LibClass bor = new LibClass();
+				borrow = bor.borrowAll();
+			} catch (Exception e) {
+				JSONObject error = new JSONObject();
+				error.put("status", 0);
 			}
 			response.getWriter().print(borrow);
-			
-		}
-		else if(operation.equals("addreturn"))
-		{
-			int sid=Integer.parseInt(request.getParameter("sid"));
-			int rempid=Integer.parseInt(request.getParameter("rempid"));
-			JSONObject add=new JSONObject();
-			try
-			{
-				LibClass addr=new LibClass();
+
+		} else if (operation.equals("addreturn")) {
+			int sid = Integer.parseInt(request.getParameter("sid"));
+			int rempid = Integer.parseInt(request.getParameter("rempid"));
+			JSONObject add = new JSONObject();
+			try {
+				LibClass addr = new LibClass();
 				addr.addreturn(sid, rempid);
 				add.put("status", 1);
-			}
-			catch(Exception e){
+			} catch (Exception e) {
 				add.put("status", 0);
 			}
 			response.getWriter().print(add);
+		} else if (operation.equals("getret")) {
+			int sedid = Integer.parseInt(request.getParameter("sid"));
+			JSONObject retun = new JSONObject();
+			try {
+				LibClass geton = new LibClass();
+				geton.borrowones(sedid);
+				retun.put("status", 1);
+			} catch (Exception e) {
+				retun.put("status", 0);
+			}
+			response.getWriter().println(retun);
 		}
 
-		
 	}
 
 }
