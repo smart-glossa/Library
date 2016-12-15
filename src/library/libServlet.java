@@ -230,13 +230,14 @@ public class libServlet extends HttpServlet {
 		} else if (operation.equals("addborrow")) {
 			JSONObject books = new JSONObject();
 			int studid = Integer.parseInt(request.getParameter("sid"));
-			String name = request.getParameter("name");
-			String bid = request.getParameter("bid");
-			String cat = request.getParameter("cat");
-			String bdate = request.getParameter("bdate");
+			int bkid= Integer.parseInt(request.getParameter("bookid"));
+			int empid= Integer.parseInt(request.getParameter("empid"));
+			
+			
+			
 			try {
 				LibClass library = new LibClass();
-				library.addborrow(studid, name, bid, cat, bdate);
+				library.addborrow(studid, bkid, empid);
 				books.put("status", 1);
 			} catch (Exception e) {
 				books.put("status", 0);
@@ -257,26 +258,50 @@ public class libServlet extends HttpServlet {
 				e.printStackTrace();
 			}
 			response.getWriter().print(rup);
-		} else if (operation.equals("getbr")) {
+		} else if (operation.equals("getborrow")) {
 			JSONObject brget = new JSONObject();
-			int studid = Integer.parseInt(request.getParameter("studid"));
+			int eid = Integer.parseInt(request.getParameter("empid"));
 			try {
 				LibClass library2 = new LibClass();
-				brget = library2.getbr(studid);
-			} catch (Exception e) {
+				brget = library2.getborrow(eid);
+				} catch (Exception e) {
 				brget.put("status", 0);
 			}
 			response.getWriter().print(brget);
 		}
+		else if(operation.equals("borrowAll")){
+			JSONArray borrow=new JSONArray();
+			try
+			{
+				LibClass bor=new LibClass();
+				borrow=bor.borrowAll();
+			}
+			catch(Exception e)
+			{
+				JSONObject error=new JSONObject();
+				error.put("status",0);
+			}
+			response.getWriter().print(borrow);
+			
+		}
+		else if(operation.equals("addreturn"))
+		{
+			int sid=Integer.parseInt(request.getParameter("sid"));
+			int rempid=Integer.parseInt(request.getParameter("rempid"));
+			JSONObject add=new JSONObject();
+			try
+			{
+				LibClass addr=new LibClass();
+				addr.addreturn(sid, rempid);
+				add.put("status", 1);
+			}
+			catch(Exception e){
+				add.put("status", 0);
+			}
+			response.getWriter().print(add);
+		}
 
-		/*
-		 * else if (operation.equals("getvalue")) { JSONObject nn = new
-		 * JSONObject(); int
-		 * studid=Integer.parseInt(request.getParameter("sid")); try { LibClass
-		 * library3=new LibClass(); library3.getvalue(); } catch (Exception e) {
-		 * nn.put("status", 0); e.printStackTrace(); }
-		 * response.getWriter().println(nn); }
-		 */
+		
 	}
 
 }

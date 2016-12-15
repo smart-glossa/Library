@@ -8,6 +8,7 @@ import java.sql.Statement;
 
 import org.json.JSONArray;
 import org.json.JSONObject;
+import org.omg.CORBA.Request;
 
 public class LibClass {
 	public void add(int id, String name, String gender, String dpt, String year, String contact, String email,
@@ -281,14 +282,13 @@ public class LibClass {
 
 	}
 
-	public void addborrow(int studid, String name, String bid, String cat, String bdate) {
+	public void addborrow(int studid, int bkid,int empid) {
 
 		try {
 			Class.forName(LibConstat.DRIVER);
 			Connection con = DriverManager.getConnection(LibConstat.url, LibConstat.USERNAME, LibConstat.PASSWORD);
 			Statement stat = con.createStatement();
-			String query = "insert into books(sid,name,bid,cat,bdate)values(" + studid + ",'" + name + "','" + bid
-					+ "','" + cat + "','" + bdate + "')";
+			String query = "insert into borrow(sid,bookid,bempid,bdate)values(" + studid + "," +bkid + "," + empid+",now())";
 			stat.execute(query);
 
 		} catch (Exception e) {
@@ -311,19 +311,18 @@ public class LibClass {
 
 	}
 
-	public JSONObject getbr(int studid) {
+	public JSONObject getborrow(int eid) {
 		JSONObject brget = new JSONObject();
 		try {
 			Class.forName(LibConstat.DRIVER);
 			Connection con = DriverManager.getConnection(LibConstat.url, LibConstat.USERNAME, LibConstat.PASSWORD);
 			Statement stat = con.createStatement();
-			String query = "select * from where sid=" + studid + "";
+			String query = "select * from borrow where bempid=" + eid;
 			ResultSet rs = stat.executeQuery(query);
 			if (rs.next()) {
-				brget.put("name", rs.getString(2));
-				brget.put("bid", rs.getString(3));
-				brget.put("cat", rs.getString(4));
-				brget.put("bdate", rs.getString(5));
+				brget.put("sid", rs.getString(2));
+				brget.put("bkid", rs.getString(3));
+				
 			}
 
 		} catch (Exception e) {
@@ -331,7 +330,72 @@ public class LibClass {
 		}
 		return brget;
 	}
+	public JSONArray borrowAll()
+	{
+		JSONArray borrow=new JSONArray();
+		try 
+		{
+			Class.forName(LibConstat.DRIVER);
+			Connection con=DriverManager.getConnection(LibConstat.url,LibConstat.USERNAME,LibConstat.PASSWORD);
+			Statement stat=con.createStatement();
+			String query="select * from borrow";
+			ResultSet rs=stat.executeQuery(query);
+			while(rs.next()){
+			 JSONObject obj=new JSONObject();
+			 obj.put("bid", rs.getInt(1));
+			 obj.put("sid", rs.getInt(2));
+			 obj.put("bookid",rs.getInt(3));
+			 obj.put("empid",rs.getInt(4));
+			 obj.put("bdate", rs.getInt(5));
+			 borrow.put(obj);
+			}
+		}
+		catch(Exception e){
+			
+		}
+		return borrow;
+		
+	}
+	public void addreturn(int sid,int rempid) {
+		try
+		{
+			Class.forName(LibConstat.DRIVER);
+			Connection con=DriverManager.getConnection(LibConstat.url,LibConstat.USERNAME,LibConstat.PASSWORD);
+			Statement stat=con.createStatement();
+			String query="insert into returnbook(sid,rempid,rdate)values("+sid+","+rempid+",now())";
+			stat.execute(query);
+		}
+		catch(Exception e){
+			
+		}
+		
+	}
 
-	
+	public JSONObject borrowones(int sid)
+	{
+		JSONObject one=new JSONObject();
+		try 
+		{
+			Class.forName(LibConstat.DRIVER);
+			Connection con=DriverManager.getConnection(LibConstat.url,LibConstat.USERNAME,LibConstat.PASSWORD);
+			Statement stat=con.createStatement();
+			String query=" select borrow.bdate,borrow.bempid,returnbook.rdate,returnbook.rempid from borrow,returnbook where borrow.sid="+sid+" and returnbook.sid="+sid+"";
+			ResultSet rs=stat.executeQuery(query);
+			while(rs.next()){
+			
+			 one.put("bid", rs.getInt(1));
+			 one.put("sid", rs.getInt(2));
+			 one.put("bookid",rs.getInt(3));
+			 one.put("empid",rs.getInt(4));
+			 one.put("bdate", rs.getInt(5));
+			
+			}
+		}
+		catch(Exception e){
+			
+		}
+		return one;
+		
+	}
 
 }
