@@ -386,7 +386,7 @@ public class LibClass {
 			 one.put("bid", rs.getInt(1));
 			 one.put("sid", rs.getInt(2));
 			 one.put("bookid",rs.getInt(3));
-			 one.put("empid",rs.getInt(4));
+			 one.put("rempid",rs.getInt(4));
 			 one.put("bdate", rs.getInt(5));
 			
 			}
