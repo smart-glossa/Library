@@ -294,7 +294,7 @@ public class libServlet extends HttpServlet {
 			JSONObject retun = new JSONObject();
 			try {
 				LibClass geton = new LibClass();
-				geton.retunsons(siedid);
+				retun= geton.retunsons(siedid);
 				retun.put("status", 1);
 			} catch (Exception e) {
 				retun.put("status", 0);

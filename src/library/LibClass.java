@@ -225,7 +225,7 @@ public class LibClass {
 					LibConstat.MYSQL_PASSWORD);
 			Statement stat = con.createStatement();
 			String query = "delete from employee where Id=" + id;
-			;
+
 			stat.execute(query);
 
 		} catch (Exception e) {
@@ -397,14 +397,14 @@ public class LibClass {
 					LibConstat.MYSQL_PASSWORD);
 			Statement stat = con.createStatement();
 			String query = " select returnbook.rempid,returnbook.rdate,borrow.bempid, borrow.bdate from returnbook,borrow where borrow.sid="
-					+ siedid + "";
+					+ siedid + " and returnbook.sid="+siedid+"";
 			ResultSet rs = stat.executeQuery(query);
 			while (rs.next()) {
 
-				one.put("rempid", rs.getInt(2));
-				one.put("rdate", rs.getDate(3));
-				one.put("bempid", rs.getInt(4));
-				one.put("bdate", rs.getDate(5));
+				one.put("rempid", rs.getInt(1));
+				one.put("rdate", rs.getDate(2));
+				one.put("bempid", rs.getInt(3));
+				one.put("bdate", rs.getDate(4));
 
 			}
 		} catch (Exception e) {
