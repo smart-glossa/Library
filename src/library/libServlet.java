@@ -290,11 +290,11 @@ public class libServlet extends HttpServlet {
 			}
 			response.getWriter().print(add);
 		} else if (operation.equals("getret")) {
-			int sedid = Integer.parseInt(request.getParameter("sid"));
+			int siedid = Integer.parseInt(request.getParameter("sid"));
 			JSONObject retun = new JSONObject();
 			try {
 				LibClass geton = new LibClass();
-				geton.borrowones(sedid);
+				geton.retunsons(siedid);
 				retun.put("status", 1);
 			} catch (Exception e) {
 				retun.put("status", 0);

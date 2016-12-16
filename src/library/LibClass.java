@@ -389,23 +389,22 @@ public class LibClass {
 
 	}
 
-	public JSONObject borrowones(int sid) {
+	public JSONObject retunsons(int siedid) {
 		JSONObject one = new JSONObject();
 		try {
 			Class.forName(LibConstat.MYSQL_DRIVER);
 			Connection con = DriverManager.getConnection(LibConstat.MYSQL_URL, LibConstat.MYSQL_USERNAME,
 					LibConstat.MYSQL_PASSWORD);
 			Statement stat = con.createStatement();
-			String query = " select borrow.bdate,borrow.bempid,returnbook.rdate,returnbook.rempid from borrow,returnbook where borrow.sid="
-					+ sid + " and returnbook.sid=" + sid + "";
+			String query = " select returnbook.rempid,returnbook.rdate,borrow.bempid, borrow.bdate from returnbook,borrow where borrow.sid="
+					+ siedid + "";
 			ResultSet rs = stat.executeQuery(query);
 			while (rs.next()) {
 
-				one.put("bid", rs.getInt(1));
-				one.put("sid", rs.getInt(2));
-				one.put("bookid", rs.getInt(3));
-				one.put("rempid", rs.getInt(4));
-				one.put("bdate", rs.getInt(5));
+				one.put("rempid", rs.getInt(2));
+				one.put("rdate", rs.getDate(3));
+				one.put("bempid", rs.getInt(4));
+				one.put("bdate", rs.getDate(5));
 
 			}
 		} catch (Exception e) {
