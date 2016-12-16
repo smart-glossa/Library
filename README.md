@@ -46,12 +46,29 @@ CREATE TABLE `book` (
   PRIMARY KEY  (`bookid`)
 ) ENGINE=InnoDB DEFAULT CHARSET=latin1
 
+TABLE 4:
 
-CREATE TABLE `books` (
-  `sid` int(50) default NULL,
-  `name` varchar(100) default NULL,
-  `bid` varchar(100) default NULL,
-  `cat` varchar(100) default NULL,
-  `bdate` varchar(100) default NULL,
-  `rdate` varchar(100) default NULL
+CREATE TABLE `borrow` (
+  `bid` int(11) NOT NULL auto_increment,
+  `sid` int(11) NOT NULL,
+  `bookid` int(11) default NULL,
+  `bempid` int(11) default NULL,
+  `bdate` datetime default NULL,
+  PRIMARY KEY  (`bid`),
+  KEY `fk_borrow` (`sid`),
+  KEY `fk_borrows` (`bempid`),
+  CONSTRAINT `fk_borrow` FOREIGN KEY (`sid`) REFERENCES `student` (`sid`),
+  CONSTRAINT `fk_borrows` FOREIGN KEY (`bempid`) REFERENCES `employee` (`Id`) ON DELETE CASCADE
+) ENGINE=InnoDB AUTO_INCREMENT=3 DEFAULT CHARSET=latin1
+
+TABLE 5:
+
+CREATE TABLE `returnbook` (
+  `sid` int(11) NOT NULL,
+  `rempid` int(11) NOT NULL,
+  `rdate` date default NULL,
+  KEY `FOR_returnbooks` (`rempid`),
+  KEY `FOR_returnbook` USING BTREE (`sid`),
+  CONSTRAINT `FOR_returnbook` FOREIGN KEY (`sid`) REFERENCES `student` (`sid`),
+  CONSTRAINT `FOR_returnbooks` FOREIGN KEY (`rempid`) REFERENCES `employee` (`Id`) ON DELETE CASCADE
 ) ENGINE=InnoDB DEFAULT CHARSET=latin1
