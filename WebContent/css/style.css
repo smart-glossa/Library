@@ -76,7 +76,10 @@ textarea{
 	font-size: 25px;
 }
 
-
+.sub{
+	width:90px;
+	height:20px; 
+}
 #submit {
 	width: 90px;
 	height: 40px;
