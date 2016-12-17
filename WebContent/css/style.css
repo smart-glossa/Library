@@ -19,13 +19,14 @@ body {
   transition-timing-function: linear;
   width: 95px;
 }
+
 .box:hover {
   background: #ff7b29;
   border-radius: 80%;
 }
 
 .ss{
-background-color:#bfbfbf;
+/*background-color:#ffffff;*/
 width:1350px;
 height:100px;
 font-family:cursive;
@@ -76,9 +77,9 @@ textarea{
 	font-size: 25px;
 }
 
-.sub{
+#sub{
 	width:90px;
-	height:20px; 
+	height:40px; 
 }
 #submit {
 	width: 90px;

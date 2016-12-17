@@ -3,59 +3,62 @@
 <head>
 <meta charset="ISO-8859-1">
 <title>Library</title>
-<style>
-.ss{
-background-color:#bfbfbf;
-width:1350px;
-height:100px;
-font-family:cursive;
-font-size:45px;
-padding-left:450px;
-color:#3333ff;
-top:15px;
-position:absolute;          
-}
-.lib
-	{
-		width:1000px;
-		height: 200px;
-		background-color:#bfbfbf;
-		margin-left: 120px;
-		position:absolute;
-	    top:250px;
-   }
-	button{
-		width: 160px;
-	    height: 40px;
-	    font-size: 21px;
-	    font-family: Times new roman;
-	    margin-left: 60px;
-   }
-     table{
-     padding-top:40px;
-     border-spacing:5px;  
-     }
-</style>
+<link rel="stylesheet" type="text/css" href="css/style.css">
+<link rel="stylesheet" type="text/css" href="css/styles.css">
+<script type="text/javascript" src="js/external/jquery.js"></script>
+<script type="text/javascript" src="js/emp.js"></script>
+<script type="text/javascript" src="js/valid.js"></script>
 </head>
 <body>
 <div class="ss">Library Management</div>
-<div class="lib">
+<div class="logins">
+<center><h3>Login</h3></center>
 
 <table>
 <tr>
-	<td><a href="student.html"><button>Student</button></a></td>
-	<td><button>SearchBook</button></td>
-	<td><a  href="books.html"><button>Borrow</button></a> </td>
-	<td><button>Logout</button></td>
-	
-</tr>
-<tr>
-	<td><a href="book.html"><button>AddBook</button></a></td>
-	<td><button>ShowBook</button></td>
-	<td><a href="books.html"><button>Return</button></a></td>
-	<td><button>About</button></td>
-</tr>
+<td>UserName<span>*</span> :</td><td> <input type="text" id="Names" placeholder="Name..!"></td></tr>
+<tr><td>Password<span>*</span> :</td><td> <input type="password" id="pwd" placeholder="Password..!"></td></tr>
+<tr><td></td><td><button id="logins">Submit</button></td></tr>
+         
 </table>
+            <a href="#1" onclick="return show()">Register Here !</a>
+	</div>
 </div>
+<div class="ll">
+		<div id="benefits" style="display: none;">
+			<center>
+				<h3>Employee details</h3>
+			<table>
+				<tr>
+					<td class="tab">Id<span>*</span>:</td>
+					<td><input type="text" id="Id" placeholder="Enter Id..!"></input></td>
+					<td class="tab">Name<span>*</span>:</td>
+					<td><input type="text" id="Name" placeholder="Enter Name..!"></input></td>
+				</tr>
+				
+				<tr>
+				    <td class="tab">Password<span>*</span>:</td>
+					<td><input type="password" id="password" placeholder="Enter Password..!"></input></td>
+					<td class="tab">Gender<span>*</span>:</td>
+					<td><input type="text" id="Gender" placeholder="Enter Gender..!"></input></td>
+				</tr>
+				<tr>
+				     <td class="tab">MobileNo<span>*</span>:</td>
+					 <td><input type="text" id="Mobileno" placeholder="Enter MobileNo..!"></input></td>
+				     <td class="tab">Address<span>*</span>:</td>
+					 <td><textarea id="Address" placeholder="Address Of Details..!"></textarea></td>
+				</tr>
+			</table>
+                   <button id="submit" >Submit</button>
+						<button id="update">Update</button>
+		
+			</center>
+			<div class="h">
+				<a onclick="return hide();"><img alt="" src="img/close.png"
+					width="30" height="30"></a>
+			</div>
+			<div id="all"></div>
+		</div>
+	</div>
 </body>
 </html>

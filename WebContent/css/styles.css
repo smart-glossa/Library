@@ -1,0 +1,44 @@
+@CHARSET "ISO-8859-1";
+.logins{
+position:absolute;
+top:200px; 
+margin-left:450px; 
+}
+.ll {
+	background-color:DarkSlateGray;                   
+	width:870px;
+	padding-left:40px;
+	position:absolute;
+	top:170px;
+	left:280px;
+	z-index: 2;
+}
+.lls {
+	background-color:DarkSlateGray;                   
+	width:1000px;
+	padding-left:20px;
+	position:absolute;
+	top:20px;
+	left:280px;
+	z-index: 2;
+}
+.h {
+	top: 8px;
+	left: 860px;
+	position: absolute;
+}
+.hh{
+	top: 12px;
+	left:1300px;
+	position: absolute;
+	
+}
+.hs{
+	top: 12px;
+	left:960px;
+	position: absolute;
+}
+.fons{
+	color:#FFFFFF;
+	font-size:23px;    
+}

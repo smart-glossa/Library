@@ -1,13 +1,8 @@
 
 // Add operation on employee
-$(document)
-		.ready(
-				function() {
+$(document).ready(function() {
 					getAllEmployee();
-					$(document).on(
-							"click",
-							"#submit",
-							function(key) {
+					$(document).on("click","#submit",function(key) {
 								var id = $('#Id').val();
 								var name = $('#Name').val();
 								var password = $('#password').val();
@@ -62,7 +57,7 @@ $(document)
 										$('#Gender').val("");
 										$('#Mobileno').val("");
 										$('#Address').val("");
-									    getAllEmployee();
+									   getAllEmployee();
 									} else if (result.status == 0) {
 										alert("Error occurs");
 									}
@@ -82,7 +77,8 @@ $(document)
 										var password = $('#password').val();
 										var gender = $('#Gender').val();
 										var mob = $('#Mobileno').val();
-										var addr = $('#Address').val();									if (id == "") {
+										var addr = $('#Address').val();									
+										if (id == "") {
 											alert("Please Enter EmployeeId..");
 											$("#Id").focus().css(
 													"outline-color", "#ff0000");
@@ -153,7 +149,7 @@ $(document)
 											console.log(result);
 										});
 
-									})
+									});
 		$(document).on("keyup", "#Id", function() {
         var id = $('#Id').val();
         if (id != "") {//http://localhost:8080/Library/lib?operation=getonly&Id=1
@@ -185,8 +181,7 @@ $(document)
             $("#Mobileno").val("");
             $("#Address").val("");
         }
-})
-
+});
 $("#Name").on("keypress", function(event) {
     var englishAlphabetAndWhiteSpace = /[A-Za-z ]/g;
    
@@ -210,6 +205,7 @@ $('#Name').on("paste",function(e)
 {
     e.preventDefault();
 });
+
 				
 									
 				});

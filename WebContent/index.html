@@ -7,97 +7,38 @@
 <script type="text/javascript" src="js/emp.js"></script>
 <script type="text/javascript" src="js/getAll.js"></script>
 <link rel="stylesheet" type="text/css" href="css/style.css">
-<style type="text/css">
-.ss{
-background-color:#bfbfbf;
-width:1350px;
-height:100px;
-font-family:cursive;
-font-size:45px;
-padding-left:20px;
-color:#3333ff;
-top:15px;
-position:absolute;          
-}
-.ll {
-	background-color:#bfbfbf;
-	width:880px;
-	padding-left:40px;
-	position:absolute;
-	top:150px;
-	left:230px;
-	color:white;
-	z-index: 2;
-}
-.h {
-	top: 8px;
-	left: 880px;
-	position: absolute;
-}
+<link rel="stylesheet" type="text/css" href="css/styles.css">
+<script type="text/javascript" src="js/valid.js"></script>
 
-</style>
-<script type="text/javascript">
-function show() {
-	if (document.getElementById('benefits').style.display == 'none') {
-		document.getElementById('benefits').style.display = 'block';
-	}
-	return false;
-}
-function hide() {
-	if (document.getElementById('benefits').style.display == 'block') {
-		document.getElementById('benefits').style.display = 'none';
-	}
-	return false;
-}
-</script>
 </head>
-<body onload=""><center>
+<body>
 <div class="ss">Library Management</div>
-<div id="opener" onclick="getAllEmployee()">
-		<a href="#1" onclick="return show();"><div class="nav">AllEmployee Details </div></a>
-	</div>
-<!--<div class="nav">AllEmployee Details </div>-->
- 
-<div class="emp">
-                     <span id="errmsg"></span>
-			<h3>Employee details</h3>
-			<table>
-				<tr>
-					<td class="tab">Id<span>*</span>:</td>
-					<td><input type="text" id="Id" placeholder="Enter Id..!"></input></td>
-					<td class="tab">Name<span>*</span>:</td>
-					<td><input type="text" id="Name" placeholder="Enter Name..!"></input></td>
-				</tr>
-				
-				<tr>
-				    <td class="tab">Password<span>*</span>:</td>
-					<td><input type="password" id="password" placeholder="Enter Password..!"></input></td>
-					<td class="tab">Gender<span>*</span>:</td>
-					<td><input type="text" id="Gender" placeholder="Enter Gender..!"></input></td>
-				</tr>
-				<tr>
-				     <td class="tab">MobileNo<span>*</span>:</td>
-					 <td><input type="text" id="Mobileno" placeholder="Enter MobileNo..!"></input></td>
-				     <td class="tab">Address<span>*</span>:</td>
-					 <td><textarea id="Address" placeholder="Address Of Details..!"></textarea></td>
-				</tr>
-			</table>
-                   <button id="submit" onclick="return validate();">Submit</button>
-						<button id="update">Update</button>
-		
-	</center></div>
+<div class="hh">
+		<a href="#1" onclick="return show();"><img alt="" src="img/1.png" title="Setting"></a>
+	</div> 
 	<center>
-	<div class="ll">
+	<div class="lls">
 		<div id="benefits" style="display: none;">
 			<center>
-				<h1>Employee  Details</h1>
+				<h1>Setting</h1>
+	<table>	
+	<tr>
+  <td><a href="#" id=acc onclick="account()" class="fons"> Add Students Details</a></td>
+  <td><a href="#" id=pay onclick="()" class="fons"> All Students Details</a></td>
+  <td><a href="#" onclick="getAllemployee()" class="fons">All Employee Details</a></td>
+   <td><a href="#" id=sta onclick="statement()" class="fons">Student Borrow/Retuns Date</a></td></tr>
+   <tr><a href="#" id=sta onclick="statement()" class="fons">Add Books</a></td>
+   <td><a href="#" id=sta onclick="statement()" class="fons">Book Details</a></td></tr>
+  </table>	
+
 			</center>
-			<div class="h">
-				<a onclick="return hide();"><img alt="" src="img/cancel.png"
+			<div class="hs">
+				<a onclick="return hide();"><img alt="" src="img/close.png"
 					width="30" height="30"></a>
 			</div>
-			<div class="getAllemployee"></div>
+			
 		</div>
 	</div>
+	<div class="getAllemployee"></div>
 	</body>
 	</html>

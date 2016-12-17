@@ -413,5 +413,30 @@ public class LibClass {
 		return one;
 
 	}
+	public JSONObject login(String name,String pwd){
+	
+		JSONObject log = new JSONObject();
+		try {
+			Class.forName(LibConstat.MYSQL_DRIVER);
+			Connection con = DriverManager.getConnection(LibConstat.MYSQL_URL, LibConstat.MYSQL_USERNAME,
+					LibConstat.MYSQL_PASSWORD);
+			Statement stat = con.createStatement();
+			String query = "select Name from employee where Name='" + name + "' AND password='" + pwd + "'";
+			ResultSet rs = stat.executeQuery(query);
+			if (rs.next()) {
+				if (name != "") {
+					log.put("username", rs.getString(1));
+					log.put("status",1);
+				}
+			} else {
+				log.put("status", "error");
+
+			}
+		} catch (Exception e) {
+
+		}
+		return log;
+
+	}
 
 }
